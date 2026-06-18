@@ -1,0 +1,16 @@
+<launch>
+  <!--
+    RTAB-Map 定位（不含 move_base，由 run_teb.sh 確認 /map 後單獨啟動）
+    用法：不要直接 roslaunch，請用 ./run_teb.sh
+  -->
+  <arg name="localization"  default="true"/>
+  <arg name="database_path" default="~/.ros/rtabmap.db"/>
+  <arg name="rtabmapviz"    default="true"/>
+
+  <include file="$(find small_brain_sim)/launch/include/rtabmap_nav.launch">
+    <arg name="localization"  value="$(arg localization)"/>
+    <arg name="database_path" value="$(arg database_path)"/>
+    <arg name="rtabmapviz"    value="$(arg rtabmapviz)"/>
+  </include>
+
+</launch>

@@ -1,0 +1,14 @@
+local_costmap:
+  global_frame:       map
+  robot_base_frame:   base_link
+  transform_tolerance: 0.5
+  update_frequency:   2.0
+  publish_frequency:  1.0
+
+  rolling_window: true   # 跟著機器人移動
+  width:   3.0
+  height:  3.0
+  resolution: 0.1
+
+  plugins:
+    - {name: static_layer,   type: "costmap_2d::StaticLayer"}

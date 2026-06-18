@@ -1,0 +1,65 @@
+# TEB Local Planner
+TebLocalPlannerROS:
+  odom_topic: /ground_truth/odom
+  map_frame:  map
+
+  # 障礙物
+  min_obstacle_dist:               0.05
+  include_costmap_obstacles:       true
+  costmap_obstacles_behind_robot_dist: 1.5
+  obstacle_poses_affected:         15
+  costmap_converter_plugin:        ""
+  costmap_converter_spin_thread:   true
+  costmap_converter_rate:          5
+  include_dynamic_obstacles:       false
+
+  # 目標容忍度 — 貼著停
+  xy_goal_tolerance:       0.15
+  yaw_goal_tolerance:      3.14   # 完全不管到達朝向，到了位置就停
+  free_goal_vel:           false
+  latch_xy_goal_tolerance: true
+
+  # 軌跡 — 緊跟全局
+  teb_autosize:                      true
+  dt_ref:                            0.3
+  dt_hysteresis:                     0.1
+  global_plan_overwrite_orientation: true   # 強制車頭對準行進切線方向
+  max_global_plan_lookahead_dist:    2.0
+  global_plan_viapoint_sep:          0.3    # 密集 via points 強制貼緊全局
+  feasibility_check_no_poses:        5
+  allow_init_with_backwards_motion:  false
+  shrink_horizon_backup:             true
+  shrink_horizon_min_duration:       10
+
+  # 優化
+  no_inner_iterations:    5
+  no_outer_iterations:    4
+  optimization_activate:  true
+  optimization_verbose:   false
+  penalty_epsilon:        0.1
+  obstacle_cost_exponent: 4
+
+  # 優化權重
+  weight_max_vel_x:                  2
+  weight_max_vel_theta:              1
+  weight_acc_lim_x:                  1
+  weight_acc_lim_theta:              1
+  weight_kinematics_nh:              1000   # 強制 vy=0：車頭必須對齊前進方向（單前置相機 → 無盲區）
+  weight_kinematics_forward_drive:   5
+  weight_kinematics_turning_radius:  0
+  weight_optimaltime:                1
+  weight_shortest_path:              0
+  weight_obstacle:                   50
+  weight_inflation:                  0.1
+  weight_dynamic_obstacle:           0
+  weight_dynamic_obstacle_inflation: 0
+  weight_viapoint:                   10    # 鬆開，減少朝向震盪
+  weight_adapt_factor:               2
+
+  # 多路徑關閉
+  enable_homotopy_class_planning: false
+  enable_multithreading:          true
+  max_number_classes:             4
+
+  # 振盪恢復關閉
+  oscillation_recovery: false

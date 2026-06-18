@@ -1,0 +1,8 @@
+<launch>
+  <!-- 开启机器人底层相关节点  -->
+  <include file="$(find wheeltec_arm_pick)/launch/base_serial.launch" >
+    <arg name="if_cartesian_demo" value="true"/>
+    <arg name="moveit_config" value="false"/>
+    <arg name="pub_node" value="false"/>
+  </include>
+</launch>

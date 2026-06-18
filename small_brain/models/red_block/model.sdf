@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="red_block">
+    <static>true</static>
+    <link name="link">
+      <inertial>
+        <mass>0.05</mass>
+        <inertia>
+          <ixx>2.08e-5</ixx><iyy>2.08e-5</iyy><izz>2.08e-5</izz>
+          <ixy>0</ixy><ixz>0</ixz><iyz>0</iyz>
+        </inertia>
+      </inertial>
+      <!-- 無碰撞：純視覺 + SetWorldPose 驅動，避免與夾爪物理干擾 -->
+      <visual name="vis">
+        <geometry><box><size>0.03 0.025 0.05</size></box></geometry>
+        <material>
+          <ambient>0.8 0.0 0.0 1</ambient>
+          <diffuse>0.8 0.0 0.0 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

@@ -1,0 +1,7 @@
+<launch>
+  <!-- 只啟動 RViz 顯示機器人模型（不含 MoveIt）-->
+  <!-- 請先執行 run_gazebo.sh，再執行此 launch -->
+  <node name="rviz" pkg="rviz" type="rviz"
+        args="-d $(find small_brain_sim)/launch/simple_robot.rviz"
+        output="screen"/>
+</launch>

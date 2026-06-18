@@ -1,0 +1,26 @@
+<launch>
+  <!-- 开启机器人底层相关节点  -->
+  <include file="$(find wheeltec_arm_pick)/launch/base_serial.launch" >
+    <arg name="if_color_tracking" value="true"/>
+    <arg name="moveit_config" value="false"/>
+    <arg name="use_camera" value="true"/>
+    <arg name="pub_node" value="false"/>
+  </include>
+  <!-- 开启色块识别节点  -->
+  <node name="color_decetor" pkg="wheeltec_tracker_pkg" type="visualTracker.py" output="screen">
+    <param name ="verticalAngle" value="0.5" type="double" />
+    <param name ="horizontalAngle" value="0.08" type="double" />
+    <param name ="pictureHeight" value="480" type="double" />
+    <param name ="pictureWidth" value="640" type="double" />
+
+    <param name ="x_bias" value="0.9851310701631576" type="double" />
+    <param name ="y_bias" value="1.024100854788955" type="double" />
+  </node>
+  <!-- 开启色块追踪节点  -->
+  <node name="color_follower" pkg="wheeltec_tracker_pkg" type="color_detector.py">
+    <param name ="Kp_x" value="1.2" type="double" />
+    <param name ="Kp_y" value="1.2" type="double" />
+    <param name ="scope_min" value="5" type="double" />
+    <param name ="scope_max" value="10" type="double" />
+  </node>
+</launch>

@@ -1,0 +1,13 @@
+# Python 编译文件
+__pycache__/
+*.pyc
+
+# IDE 配置
+.vscode/
+.idea/
+
+# 其他临时文件
+*.log
+*.swp
+
+api_key.py

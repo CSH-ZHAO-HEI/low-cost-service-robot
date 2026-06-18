@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="plastic_cup">
+    <static>true</static>
+    <link name="link">
+      <!-- link origin = cup geometric centre (0.065 m above cup base) -->
+      <pose>0 0 0.065 0 0 0</pose>
+      <inertial>
+        <mass>0.0599</mass>
+        <inertia>
+          <ixx>3.03e-4</ixx><iyy>3.03e-4</iyy><izz>3.29e-5</izz>
+          <ixy>0</ixy><ixz>0</ixz><iyz>0</iyz>
+        </inertia>
+      </inertial>
+      <!-- 無碰撞：純視覺 + SetModelState 驅動，與 red_block 相同機制 -->
+      <visual name="vis">
+        <geometry>
+          <mesh>
+            <uri>model://plastic_cup/meshes/plastic_cup.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

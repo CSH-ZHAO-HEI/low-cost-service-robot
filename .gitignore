@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# ROS/catkin build products
+build/
+devel/
+install/
+logs/
+.catkin_tools/
+
+# Runtime and experiment outputs
+outputs/
+**/outputs/
+**/judge_logs/
+**/run_evidence/
+*.jsonl
+*.log
+*.csv
+*.xlsx
+*.rar
+
+# Local secrets/config
+.env
+*.env
+id_rsa*
+credentials*
+secrets*
+
+# OS/editor noise
+.DS_Store
+*.swp

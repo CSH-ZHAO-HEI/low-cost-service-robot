@@ -1,0 +1,20 @@
+<launch>
+  <!--默认启动launch加载车型为mini_mec_four_arm，具体车型可由base_serial.launch传入参数-->
+  <arg name="car_mode" default="mini_mec_four_arm"/>
+  <arg name="moveit_num" default="four_arm"/>
+  <node name="$(arg moveit_num)_car_location_color" pkg="wheeltec_arm_pick" type="$(arg moveit_num)_car_location_color" output="screen">
+    <param name="car_mode" type="string" value="$(arg car_mode)"/>
+    <param if="$(eval moveit_num=='six_arm')" name="rotate_mode" type="string" value="holder"/> <!--六自由度机械臂夹取色块后旋转方式选择1.chassis 2.holder)-->
+  	<param name="x_p" value="0.15"/>   <!-- 色块定位时x轴方向运动的pid参数  -->
+  	<param name="x_i" value="0.0"/> 
+  	<param name="x_d" value="0.04"/>
+  	<param name="y_p" value="0.15"/>   <!-- 色块定位时y轴方向运动的pid参数  -->
+  	<param name="y_i" value="0.0"/> 
+  	<param name="y_d" value="0.04"/>
+    <param name="z_p" value="0.3"/>   <!-- 色块定位时z轴方向运动的pid参数  -->
+    <param name="z_i" value="0.0"/> 
+    <param name="z_d" value="0.03"/>
+  	<param name="color_location_x" value="0.0909"/>  <!-- 色块定位的位置  -->
+  	<param name="color_location_y" value="0.2924"/>
+  </node>
+</launch>

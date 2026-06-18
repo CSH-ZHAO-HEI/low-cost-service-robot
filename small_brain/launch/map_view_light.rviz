@@ -1,0 +1,74 @@
+Panels:
+  - Class: rviz/Displays
+    Name: Displays
+  - Class: rviz/Views
+    Name: Views
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Class: rviz/Grid
+      Name: Grid
+      Enabled: true
+      Cell Size: 1
+      Color: 160; 160; 164
+      Plane: XY
+      Reference Frame: <Fixed Frame>
+    - Class: rviz/RobotModel
+      Name: RobotModel
+      Enabled: true
+    - Class: rviz/Map
+      Name: "RTAB 2D Map"
+      Enabled: true
+      Topic: /rtabmap/grid_map
+      Alpha: 0.9
+      Color Scheme: map
+      Draw Behind: false
+    - Class: rviz/Odometry
+      Name: "Ground Truth Odom"
+      Enabled: true
+      Topic: /ground_truth/odom
+      Keep: 60
+      Shape:
+        Alpha: 1
+        Axes Length: 0.3
+        Axes Radius: 0.02
+        Color: 0; 255; 0
+        Head Length: 0.1
+        Head Radius: 0.05
+        Shaft Length: 0.3
+        Shaft Radius: 0.02
+        Value: Arrow
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: map
+    Frame Rate: 10
+  Tools:
+    - Class: rviz/Interact
+    - Class: rviz/MoveCamera
+    - Class: rviz/Select
+    - Class: rviz/FocusCamera
+    - Class: rviz/Measure
+  Views:
+    Current:
+      Class: rviz/TopDownOrtho
+      Name: "Top-down 2D"
+      Scale: 45
+      Target Frame: base_link
+      X: 0
+      Y: 0
+    Saved:
+      - Class: rviz/Orbit
+        Name: "3D Orbit"
+        Distance: 15
+        Focal Point:
+          X: 0
+          Y: 0
+          Z: 0
+        Pitch: 0.8
+        Yaw: 3.14
+        Target Frame: map
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 900
+  Width: 1200

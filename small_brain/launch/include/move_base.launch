@@ -1,0 +1,34 @@
+<launch>
+  <!-- move_base + depthimage_to_laserscan
+       由 run_teb.sh 在確認 /map 就緒後才啟動 -->
+
+  <!-- 深度圖轉 LaserScan -->
+  <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan"
+        name="depthimage_to_laserscan" output="screen">
+    <param name="scan_height"      value="20"/>
+    <param name="range_min"        value="0.5"/>
+    <param name="range_max"        value="8.0"/>
+    <param name="output_frame_id"  value="camera_depth_optical_frame"/>
+    <remap from="image"            to="/camera/depth/image_raw"/>
+    <remap from="camera_info"      to="/camera/depth/camera_info"/>
+    <remap from="scan"             to="/scan"/>
+  </node>
+
+  <!-- move_base -->
+  <node pkg="move_base" type="move_base" name="move_base" respawn="false" output="screen">
+    <rosparam file="$(find small_brain_sim)/config/nav/move_base_params.yaml"          command="load"/>
+    <param name="base_global_planner" value="global_planner/GlobalPlanner"/>
+    <rosparam file="$(find small_brain_sim)/config/nav/base_global_planner_param.yaml" command="load" ns="GlobalPlanner"/>
+    <param name="base_local_planner"  value="teb_local_planner/TebLocalPlannerROS"/>
+    <rosparam file="$(find small_brain_sim)/config/nav/teb_local_planner_params.yaml"  command="load" ns="TebLocalPlannerROS"/>
+    <rosparam file="$(find small_brain_sim)/config/nav/teb_robot_params.yaml"          command="load" ns="TebLocalPlannerROS"/>
+    <rosparam file="$(find small_brain_sim)/config/nav/costmap_common_params.yaml"     command="load" ns="global_costmap"/>
+    <rosparam file="$(find small_brain_sim)/config/nav/costmap_common_params.yaml"     command="load" ns="local_costmap"/>
+    <rosparam file="$(find small_brain_sim)/config/nav/global_costmap_params.yaml"     command="load"/>
+    <rosparam file="$(find small_brain_sim)/config/nav/local_costmap_params.yaml"      command="load"/>
+  </node>
+
+  <!-- 多點巡航腳本 -->
+  <node name="send_mark" pkg="small_brain_sim" type="send_mark.py" output="screen"/>
+
+</launch>

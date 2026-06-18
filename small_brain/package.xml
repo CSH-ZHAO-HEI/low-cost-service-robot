@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>small_brain_sim</name>
+  <version>0.1.0</version>
+  <description>Wheeltec mini_mec_six_arm in AWS warehouse Gazebo simulation</description>
+  <maintainer email="user@todo.com">user</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>roslaunch</depend>
+  <depend>gazebo_ros</depend>
+  <depend>robot_state_publisher</depend>
+  <depend>controller_manager</depend>
+  <depend>joint_state_controller</depend>
+  <depend>position_controllers</depend>
+  <depend>mini_mec_six_arm</depend>
+  <depend>aws_robomaker_small_warehouse_world</depend>
+</package>

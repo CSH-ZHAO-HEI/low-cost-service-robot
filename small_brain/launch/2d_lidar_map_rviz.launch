@@ -1,0 +1,6 @@
+<launch>
+  <node pkg="rviz" type="rviz" name="lidar_2d_map_rviz" output="screen"
+        args="-d $(find small_brain_sim)/launch/2d_lidar_map_view.rviz">
+    <env name="LD_LIBRARY_PATH" value="/usr/local/lib/x86_64-linux-gnu:$(env LD_LIBRARY_PATH)"/>
+  </node>
+</launch>

@@ -1,0 +1,1327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="mini_mec_six_arm">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.0126930979005275 0.00191328701604972 -0.05"
+        rpy="0 0 0" />
+      <mass
+        value="60.0" />
+      <inertia
+        ixx="5.0"
+        ixy="0"
+        ixz="0"
+        iyy="5.0"
+        iyz="0"
+        izz="0.01275766727166012" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mini_mec_six_arm/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+  </link>
+  <link
+    name="left_front_wheel_link">
+    <inertial>
+      <origin
+        xyz="-3.0979511909876E-06 0.0173322020637727 4.43766253017258E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.0503853041294886" />
+      <inertia
+        ixx="5.77203859894131E-06"
+        ixy="-6.39490308551869E-10"
+        ixz="-6.55101507497994E-10"
+        iyy="7.74120907350755E-06"
+        iyz="1.14467480632514E-09"
+        izz="5.77288622221224E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mini_mec_six_arm/meshes/left_front_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mini_mec_six_arm/meshes/left_front_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_front_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="0.094976 0.076703 0.038001"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="left_front_wheel_link" />
+    <axis
+      xyz="0 1 0" />
+    <dynamics damping="0.05" friction="0.0"/>
+  </joint>
+  <link
+    name="left_rear_wheel_link">
+    <inertial>
+      <origin
+        xyz="-3.06188346035907E-06 0.017331873242395 -5.84140984641324E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.0503852022031433" />
+      <inertia
+        ixx="5.7719914844331E-06"
+        ixy="-6.47591418647473E-10"
+        ixz="6.3996728285628E-10"
+        iyy="7.74122667602425E-06"
+        iyz="-1.13209672720901E-09"
+        izz="5.77285855433357E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mini_mec_six_arm/meshes/left_rear_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mini_mec_six_arm/meshes/left_rear_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_rear_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-0.078024 0.076703 0.038001"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="left_rear_wheel_link" />
+    <axis
+      xyz="0 1 0" />
+    <dynamics damping="0.05" friction="0.0"/>
+  </joint>
+  <link
+    name="right_front_wheel_link">
+    <inertial>
+      <origin
+        xyz="3.06240360546661E-06 -0.0173318735620233 -5.84117647387666E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.0503852021760132" />
+      <inertia
+        ixx="5.77199099297903E-06"
+        ixy="-6.47832070333766E-10"
+        ixz="-6.39570296767498E-10"
+        iyy="7.74122684098967E-06"
+        iyz="1.13229861557678E-09"
+        izz="5.7728593340892E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mini_mec_six_arm/meshes/right_front_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mini_mec_six_arm/meshes/right_front_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_front_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="0.094976 -0.075297 0.038001"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="right_front_wheel_link" />
+    <axis
+      xyz="0 1 0" />
+    <dynamics damping="0.05" friction="0.0"/>
+  </joint>
+  <link
+    name="right_rear_wheel_link">
+    <inertial>
+      <origin
+        xyz="3.09795119093903E-06 -0.0173322020637727 4.43766253057504E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.0503853041294886" />
+      <inertia
+        ixx="5.77203859894127E-06"
+        ixy="-6.39490308545873E-10"
+        ixz="6.55101507484353E-10"
+        iyy="7.7412090735075E-06"
+        iyz="-1.14467480634659E-09"
+        izz="5.77288622221223E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mini_mec_six_arm/meshes/right_rear_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mini_mec_six_arm/meshes/right_rear_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_rear_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-0.078024 -0.075297 0.038001"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="right_rear_wheel_link" />
+    <axis
+      xyz="0 1 0" />
+    <dynamics damping="0.05" friction="0.0"/>
+  </joint>
+  <link
+    name="link1">
+    <inertial>
+      <origin
+        xyz="0.00667902683248248 -0.000617925084982596 0.0234455072147809"
+        rpy="0 0 0" />
+      <mass
+        value="0.0586503298513903" />
+      <inertia
+        ixx="1.45885437825898E-05"
+        ixy="1.52166973047874E-07"
+        ixz="-6.11635522611016E-11"
+        iyy="1.53643210446061E-05"
+        iyz="1.45081779343097E-07"
+        izz="2.71785457903366E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mini_mec_six_arm/meshes/link1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.741176470588235 0.901960784313726 0.956862745098039 1" />
+      </material>
+    </visual>
+  </link>
+  <joint
+    name="joint1"
+    type="revolute">
+    <origin
+      xyz="0.054476 0.00070272 0.156"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="link1" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="10"
+      velocity="3.0" />
+    <dynamics damping="1.0" friction="0.0"/>
+  </joint>
+  <link
+    name="link2">
+    <inertial>
+      <origin
+        xyz="-9.85322934354826E-16 -0.0187068878492825 0.0525000000000002"
+        rpy="0 0 0" />
+      <mass
+        value="0.0182961255655768" />
+      <inertia
+        ixx="1.62397575138106E-05"
+        ixy="1.347414273068E-20"
+        ixz="1.05563798552101E-19"
+        iyy="7.56857037469834E-06"
+        iyz="1.05493260809061E-20"
+        izz="1.05132687532735E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mini_mec_six_arm/meshes/link2.STL"
+          scale="1 1 2" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.741176470588235 0.901960784313726 0.956862745098039 1" />
+      </material>
+    </visual>
+  </link>
+  <joint
+    name="joint2"
+    type="revolute">
+    <origin
+      xyz="0.0005 0.0227 0.0315"
+      rpy="0 0 0" />
+    <parent
+      link="link1" />
+    <child
+      link="link2" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="10"
+      velocity="3.0" />
+    <dynamics damping="1.0" friction="0.0"/>
+  </joint>
+  <link
+    name="link3">
+    <inertial>
+      <origin
+        xyz="-0.00111507938513392 -0.0229699776837651 0.022150414355608"
+        rpy="0 0 0" />
+      <mass
+        value="0.049761015025666" />
+      <inertia
+        ixx="1.97699131875969E-05"
+        ixy="1.45081779342829E-07"
+        ixz="-1.29484660544253E-07"
+        iyy="1.16329572702889E-05"
+        iyz="1.52071961891174E-07"
+        izz="1.21511693273578E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mini_mec_six_arm/meshes/link3.STL"
+          scale="1 1 2" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.741176470588235 0.901960784313726 0.956862745098039 1" />
+      </material>
+    </visual>
+  </link>
+  <joint
+    name="joint3"
+    type="revolute">
+    <origin
+      xyz="0 0.001 0.210"
+      rpy="0 0 0" />
+    <parent
+      link="link2" />
+    <child
+      link="link3" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="10"
+      velocity="3.0" />
+    <dynamics damping="1.0" friction="0.0"/>
+  </joint>
+  <link
+    name="link4">
+    <inertial>
+      <origin
+        xyz="-0.0213103124095009 -0.0185844162741873 0.0110816058821624"
+        rpy="0 0 0" />
+      <mass
+        value="0.0878001321766832" />
+      <inertia
+        ixx="2.46599779245465E-05"
+        ixy="1.45021327668014E-07"
+        ixz="-2.90593993899019E-07"
+        iyy="1.6070287359599E-05"
+        iyz="3.04143941476546E-07"
+        izz="1.79892545898004E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mini_mec_six_arm/meshes/link4.STL"
+          scale="1 1 1" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.741176470588235 0.901960784313726 0.956862745098039 1" />
+      </material>
+    </visual>
+  </link>
+  <joint
+    name="joint4"
+    type="revolute">
+    <origin
+      xyz="0.0010378 -0.0015 0.195"
+      rpy="0 0 0" />
+    <parent
+      link="link3" />
+    <child
+      link="link4" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="50"
+      velocity="3.0" />
+    <dynamics damping="1.0" friction="0.0"/>
+  </joint>
+  <link
+    name="link5">
+    <inertial>
+      <origin
+        xyz="0.0170982452822612 -0.00181857593758557 0.0338763871147772"
+        rpy="0 0 0" />
+      <mass
+        value="0.0430173483223723" />
+      <inertia
+        ixx="8.16764387727323E-06"
+        ixy="-1.64540582497823E-09"
+        ixz="-9.56284780635361E-11"
+        iyy="5.73687952145364E-06"
+        iyz="-1.62969767998056E-08"
+        izz="1.08202419601291E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mini_mec_six_arm/meshes/link5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.741176470588235 0.901960784313726 0.956862745098039 1" />
+      </material>
+    </visual>
+  </link>
+  <joint
+    name="joint5"
+    type="revolute">
+    <origin
+      xyz="-0.027 -0.0222 0.0432"
+      rpy="0 0 0" />
+    <parent
+      link="link4" />
+    <child
+      link="link5" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="10"
+      velocity="3.0" />
+    <dynamics damping="1.0" friction="0.0"/>
+  </joint>
+  <link
+    name="link6">
+    <inertial>
+      <origin
+        xyz="-0.000194093105239088 -0.00406170911599912 0.00427793516199637"
+        rpy="0 0 0" />
+      <mass
+        value="0.00295713424801494" />
+      <inertia
+        ixx="3.69051910011208E-07"
+        ixy="1.37518807205944E-21"
+        ixz="-1.83407587972863E-21"
+        iyy="1.97507512195388E-07"
+        iyz="1.30296235803104E-07"
+        izz="1.83985404612553E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mini_mec_six_arm/meshes/link6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+  </link>
+  <joint
+    name="joint6"
+    type="revolute">
+    <origin
+      xyz="-0.005 -0.0125 0.036042"
+      rpy="0 0 0" />
+    <parent
+      link="link5" />
+    <child
+      link="link6" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.8"
+      upper="0.8"
+      effort="10"
+      velocity="3.0" />
+    <dynamics damping="1.0" friction="1.0"/>
+  </joint>
+  <link
+    name="link7">
+    <inertial>
+      <origin
+        xyz="0.0108163554531008 -0.00658804624516091 0.0193552201367155"
+        rpy="0 0 0" />
+      <mass
+        value="0.0110869938441044" />
+      <inertia
+        ixx="2.52356347882992E-06"
+        ixy="-3.99343051177411E-14"
+        ixz="-3.44198258093944E-13"
+        iyy="2.26638567960652E-06"
+        iyz="-3.12207718590886E-07"
+        izz="7.09396223566293E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mini_mec_six_arm/meshes/link7.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0.137254901960784 1 1" />
+      </material>
+    </visual>
+  </link>
+  <joint
+    name="joint7"
+    type="revolute">
+    <origin
+      xyz="-0.007 -0.024099 0.025382"
+      rpy="0 0 0" />
+    <parent
+      link="link6" />
+    <child
+      link="link7" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.8"
+      upper="0.8"
+      effort="10"
+      velocity="3.0" />
+    <dynamics damping="1.0" friction="1.0"/>
+  </joint>
+  <link
+    name="link8">
+    <inertial>
+      <origin
+        xyz="0.00349999999999803 0.00657959409149543 0.00672799311105976"
+        rpy="0 0 0" />
+      <mass
+        value="0.0018586896201087" />
+      <inertia
+        ixx="3.62044301910542E-07"
+        ixy="7.39648872268616E-22"
+        ixz="-9.97338467324055E-22"
+        iyy="1.85573920991122E-07"
+        iyz="-1.4156712587855E-07"
+        izz="1.79258415349583E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mini_mec_six_arm/meshes/link8.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.749019607843137 0.749019607843137 0.749019607843137 1" />
+      </material>
+    </visual>
+  </link>
+  <joint
+    name="joint8"
+    type="revolute">
+    <origin
+      xyz="-0.0095 0.0125 0.036042"
+      rpy="0 0 0" />
+    <parent
+      link="link5" />
+    <child
+      link="link8" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-0.8"
+      upper="0.8"
+      effort="10"
+      velocity="3.0" />
+    <dynamics damping="1.0" friction="1.0"/>
+  </joint>
+  <link
+    name="link9">
+    <inertial>
+      <origin
+        xyz="0.0108163558187058 0.00614995351026065 0.0192779549189973"
+        rpy="0 0 0" />
+      <mass
+        value="0.0110869919561476" />
+      <inertia
+        ixx="2.52356011937649E-06"
+        ixy="6.32729829099977E-14"
+        ixz="-4.47080034609005E-13"
+        iyy="2.26639573880164E-06"
+        iyz="3.12169922164552E-07"
+        izz="7.09382735241388E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mini_mec_six_arm/meshes/link9.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+  </link>
+  <joint
+    name="joint9"
+    type="revolute">
+    <origin
+      xyz="-0.0025 0.024471 0.025023"
+      rpy="0 0 0" />
+    <parent
+      link="link8" />
+    <child
+      link="link9" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.8"
+      upper="0.8"
+      effort="10"
+      velocity="3.0" />
+    <dynamics damping="1.0" friction="1.0"/>
+  </joint>
+  <link
+    name="link10">
+    <inertial>
+      <origin
+        xyz="0.00750000000000017 -0.012774767030706 0.0120023151330316"
+        rpy="0 0 0" />
+      <mass
+        value="0.00108778506953505" />
+      <inertia
+        ixx="1.71922619588064E-07"
+        ixy="6.57446087648168E-22"
+        ixz="-6.59404677796195E-22"
+        iyy="9.10794072426595E-08"
+        iyz="8.29113514522289E-08"
+        izz="8.24748899497073E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mini_mec_six_arm/meshes/link10.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+  </link>
+  <joint
+    name="joint10"
+    type="revolute">
+    <origin
+      xyz="-0.008 -0.032703 0.028688"
+      rpy="0 0 0" />
+    <parent
+      link="link5" />
+    <child
+      link="link10" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.8"
+      upper="0.8"
+      effort="10"
+      velocity="3.0" />
+    <dynamics damping="1.0" friction="1.0"/>
+  </joint>
+  <link
+    name="link11">
+    <inertial>
+      <origin
+        xyz="0.00749999999999994 0.0129506495019428 0.0118123207260478"
+        rpy="0 0 0" />
+      <mass
+        value="0.00108778506953506" />
+      <inertia
+        ixx="1.71922619588065E-07"
+        ixy="4.61905993994358E-22"
+        ixz="4.74052940855536E-22"
+        iyy="8.86285716066098E-08"
+        iyz="-8.30022521497621E-08"
+        izz="8.49257255857574E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mini_mec_six_arm/meshes/link11.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+  </link>
+  <joint
+    name="joint11"
+    type="revolute">
+    <origin
+      xyz="-0.008 0.032703 0.028688"
+      rpy="0 0 0" />
+    <parent
+      link="link5" />
+    <child
+      link="link11" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-0.8"
+      upper="0.8"
+      effort="10"
+      velocity="3.0" />
+    <dynamics damping="1.0" friction="1.0"/>
+  </joint>
+
+  <!-- ============================================ -->
+  <!-- Gazebo Plugins                               -->
+  <!-- ============================================ -->
+
+  <!-- ros_control plugin -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    </plugin>
+  </gazebo>
+
+  <!-- Planar move plugin: mecanum base via /cmd_vel -->
+  <gazebo>
+    <plugin name="object_controller" filename="libgazebo_ros_planar_move.so">
+      <commandTopic>/cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryRate>20.0</odometryRate>
+      <robotBaseFrame>base_link</robotBaseFrame>
+    </plugin>
+  </gazebo>
+
+
+
+  <!-- Ground truth odometry: reads base_link pose directly from Gazebo physics engine.
+       Zero noise, zero drift. Used by RTAB-Map instead of wheel odometry.
+       Topic: /ground_truth/odom (nav_msgs/Odometry, frame_id=odom, child=base_link) -->
+  <gazebo>
+    <plugin name="ground_truth_p3d" filename="libgazebo_ros_p3d.so">
+      <bodyName>base_link</bodyName>
+      <topicName>/ground_truth/odom</topicName>
+      <frameName>world</frameName>
+      <updateRate>50.0</updateRate>
+      <gaussianNoise>0.0</gaussianNoise>
+      <publishTf>0</publishTf>
+    </plugin>
+  </gazebo>
+
+  <gazebo reference="left_front_wheel_link"><mu1>0.8</mu1><mu2>0.8</mu2></gazebo>
+  <gazebo reference="left_rear_wheel_link"><mu1>0.8</mu1><mu2>0.8</mu2></gazebo>
+  <gazebo reference="right_front_wheel_link"><mu1>0.8</mu1><mu2>0.8</mu2></gazebo>
+  <gazebo reference="right_rear_wheel_link"><mu1>0.8</mu1><mu2>0.8</mu2></gazebo>
+
+  <!-- Wheel transmissions (for joint_state_controller TF publishing) -->
+  <transmission name="tran_left_front_wheel">
+    <type>transmission_interface/SimpleTransmission</type>
+    <dynamics damping="0.05" friction="0.0"/>
+    <joint name="left_front_wheel_joint"><hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface></joint>
+    <actuator name="motor_left_front_wheel"><hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface><mechanicalReduction>1</mechanicalReduction></actuator>
+  </transmission>
+  <transmission name="tran_left_rear_wheel">
+    <type>transmission_interface/SimpleTransmission</type>
+    <dynamics damping="0.05" friction="0.0"/>
+    <joint name="left_rear_wheel_joint"><hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface></joint>
+    <actuator name="motor_left_rear_wheel"><hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface><mechanicalReduction>1</mechanicalReduction></actuator>
+  </transmission>
+  <transmission name="tran_right_front_wheel">
+    <type>transmission_interface/SimpleTransmission</type>
+    <dynamics damping="0.05" friction="0.0"/>
+    <joint name="right_front_wheel_joint"><hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface></joint>
+    <actuator name="motor_right_front_wheel"><hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface><mechanicalReduction>1</mechanicalReduction></actuator>
+  </transmission>
+  <transmission name="tran_right_rear_wheel">
+    <type>transmission_interface/SimpleTransmission</type>
+    <dynamics damping="0.05" friction="0.0"/>
+    <joint name="right_rear_wheel_joint"><hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface></joint>
+    <actuator name="motor_right_rear_wheel"><hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface><mechanicalReduction>1</mechanicalReduction></actuator>
+  </transmission>
+
+  <!-- ============================================ -->
+  <!-- Transmissions (arm joint1-5, hand joint6-11) -->
+  <!-- ============================================ -->
+
+  <transmission name="tran_joint1">
+    <type>transmission_interface/SimpleTransmission</type>
+    <dynamics damping="1.0" friction="0.0"/>
+    <joint name="joint1"><hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface></joint>
+    <actuator name="motor_joint1"><hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface><mechanicalReduction>1</mechanicalReduction></actuator>
+  </transmission>
+  <transmission name="tran_joint2">
+    <type>transmission_interface/SimpleTransmission</type>
+    <dynamics damping="1.0" friction="0.0"/>
+    <joint name="joint2"><hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface></joint>
+    <actuator name="motor_joint2"><hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface><mechanicalReduction>1</mechanicalReduction></actuator>
+  </transmission>
+  <transmission name="tran_joint3">
+    <type>transmission_interface/SimpleTransmission</type>
+    <dynamics damping="1.0" friction="0.0"/>
+    <joint name="joint3"><hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface></joint>
+    <actuator name="motor_joint3"><hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface><mechanicalReduction>1</mechanicalReduction></actuator>
+  </transmission>
+  <transmission name="tran_joint4">
+    <type>transmission_interface/SimpleTransmission</type>
+    <dynamics damping="1.0" friction="0.0"/>
+    <joint name="joint4"><hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface></joint>
+    <actuator name="motor_joint4"><hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface><mechanicalReduction>1</mechanicalReduction></actuator>
+  </transmission>
+  <transmission name="tran_joint5">
+    <type>transmission_interface/SimpleTransmission</type>
+    <dynamics damping="1.0" friction="0.0"/>
+    <joint name="joint5"><hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface></joint>
+    <actuator name="motor_joint5"><hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface><mechanicalReduction>1</mechanicalReduction></actuator>
+  </transmission>
+  <!-- 夾爪用 EffortJointInterface — effort controller 施力夾緊，不抖動 -->
+  <transmission name="tran_joint6">
+    <type>transmission_interface/SimpleTransmission</type>
+    <dynamics damping="1.0" friction="1.0"/>
+    <joint name="joint6"><hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface></joint>
+    <actuator name="motor_joint6"><hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface><mechanicalReduction>1</mechanicalReduction></actuator>
+  </transmission>
+  <transmission name="tran_joint7">
+    <type>transmission_interface/SimpleTransmission</type>
+    <dynamics damping="1.0" friction="1.0"/>
+    <joint name="joint7"><hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface></joint>
+    <actuator name="motor_joint7"><hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface><mechanicalReduction>1</mechanicalReduction></actuator>
+  </transmission>
+  <transmission name="tran_joint8">
+    <type>transmission_interface/SimpleTransmission</type>
+    <dynamics damping="1.0" friction="1.0"/>
+    <joint name="joint8"><hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface></joint>
+    <actuator name="motor_joint8"><hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface><mechanicalReduction>1</mechanicalReduction></actuator>
+  </transmission>
+  <transmission name="tran_joint9">
+    <type>transmission_interface/SimpleTransmission</type>
+    <dynamics damping="1.0" friction="1.0"/>
+    <joint name="joint9"><hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface></joint>
+    <actuator name="motor_joint9"><hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface><mechanicalReduction>1</mechanicalReduction></actuator>
+  </transmission>
+  <transmission name="tran_joint10">
+    <type>transmission_interface/SimpleTransmission</type>
+    <dynamics damping="1.0" friction="1.0"/>
+    <joint name="joint10"><hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface></joint>
+    <actuator name="motor_joint10"><hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface><mechanicalReduction>1</mechanicalReduction></actuator>
+  </transmission>
+  <transmission name="tran_joint11">
+    <type>transmission_interface/SimpleTransmission</type>
+    <dynamics damping="1.0" friction="1.0"/>
+    <joint name="joint11"><hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface></joint>
+    <actuator name="motor_joint11"><hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface><mechanicalReduction>1</mechanicalReduction></actuator>
+  </transmission>
+
+  <!-- Orbbec Astra camera (position from JP515 official URDF, z converted to ground-origin frame) -->
+  <link name="camera_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.11" />
+      <inertia ixx="1.0E-04" ixy="0" ixz="0"
+               iyy="1.0E-04" iyz="0" izz="1.0E-04" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://mini_mec_six_arm/meshes/camera_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.4 0.4 0.4 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.03 0.165 0.04" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="camera_joint" type="fixed">
+    <origin xyz="-0.11427 0.00080 0.556" rpy="0 0.06 0" />
+    <parent link="base_link" />
+    <child link="camera_link" />
+  </joint>
+
+  <!-- Optical frame: standard ROS convention (x-right, y-down, z-forward) -->
+  <link name="camera_depth_optical_frame"/>
+  <joint name="camera_depth_optical_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="-1.570796 0 -1.570796"/>
+    <parent link="camera_link"/>
+    <child link="camera_depth_optical_frame"/>
+  </joint>
+
+  <!-- Prevent Gazebo from lumping camera_link into base_link -->
+  <gazebo reference="camera_joint">
+    <preserveFixedJoint>true</preserveFixedJoint>
+  </gazebo>
+
+  <!-- Gazebo: camera_link material + RGB + Depth sensors (Orbbec Astra S specs) -->
+  <gazebo reference="camera_link">
+    <material>Gazebo/Grey</material>
+
+    <!-- RGB Camera: 63.1° HFOV, 640x480, 30fps -->
+    <sensor type="camera" name="astra_rgb">
+      <update_rate>30</update_rate>
+      <camera name="astra_rgb">
+        <horizontal_fov>1.1013</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>20.0</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+      <plugin name="astra_rgb_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>30</updateRate>
+        <cameraName>camera</cameraName>
+        <imageTopicName>rgb/image_raw</imageTopicName>
+        <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
+        <frameName>camera_depth_optical_frame</frameName>
+      </plugin>
+    </sensor>
+
+    <!-- Depth Camera: 58.4° HFOV, 640x480, 30fps, range 0.3-8m -->
+    <sensor type="depth" name="astra_depth">
+      <update_rate>30</update_rate>
+      <camera name="astra_depth">
+        <horizontal_fov>1.0194</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+        </image>
+        <clip>
+          <near>0.3</near>
+          <far>8.0</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.005</stddev>
+        </noise>
+      </camera>
+      <plugin name="astra_depth_controller" filename="libgazebo_ros_openni_kinect.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>30</updateRate>
+        <cameraName>camera</cameraName>
+        <imageTopicName>depth/image_color</imageTopicName>
+        <cameraInfoTopicName>depth/camera_info</cameraInfoTopicName>
+        <depthImageTopicName>depth/image_raw</depthImageTopicName>
+        <depthImageCameraInfoTopicName>depth/camera_info</depthImageCameraInfoTopicName>
+        <pointCloudTopicName>depth/points</pointCloudTopicName>
+        <frameName>camera_depth_optical_frame</frameName>
+        <pointCloudCutoff>0.5</pointCloudCutoff>
+        <pointCloudCutoffMax>8.0</pointCloudCutoffMax>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+
+  <!-- gazebo_grasp_fix: stable grasp plugin (industry standard) -->
+  <gazebo>
+    <plugin name="gazebo_grasp_fix" filename="libgazebo_grasp_fix.so">
+      <arm>
+        <arm_name>mini_mec_arm</arm_name>
+        <palm_link>link5</palm_link>
+        <gripper_link>link6</gripper_link>
+        <gripper_link>link7</gripper_link>
+        <gripper_link>link8</gripper_link>
+        <gripper_link>link9</gripper_link>
+        <gripper_link>link10</gripper_link>
+        <gripper_link>link11</gripper_link>
+      </arm>
+      <forces_angle_tolerance>100</forces_angle_tolerance>
+      <update_rate>50</update_rate>
+      <grip_count_threshold>2</grip_count_threshold>
+      <max_grip_count>8</max_grip_count>
+      <release_tolerance>0.005</release_tolerance>
+      <disable_collisions_on_attach>false</disable_collisions_on_attach>
+      <contact_topic>__default_topic__</contact_topic>
+    </plugin>
+  </gazebo>
+
+  <!-- Wheel friction zeroed to prevent dynamic conflict with libgazebo_ros_planar_move -->
+  <gazebo reference="left_front_wheel_link">
+    <mu1>0.0</mu1>
+    <mu2>0.0</mu2>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+  </gazebo>
+  <gazebo reference="left_rear_wheel_link">
+    <mu1>0.0</mu1>
+    <mu2>0.0</mu2>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+  </gazebo>
+  <gazebo reference="right_front_wheel_link">
+    <mu1>0.0</mu1>
+    <mu2>0.0</mu2>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+  </gazebo>
+  <gazebo reference="right_rear_wheel_link">
+    <mu1>0.0</mu1>
+    <mu2>0.0</mu2>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+  </gazebo>
+
+  <!-- Gripper joints: implicit spring damper to prevent ODE instability on low-inertia links -->
+  <gazebo reference="joint6"><implicitSpringDamper>true</implicitSpringDamper></gazebo>
+  <gazebo reference="joint7"><implicitSpringDamper>true</implicitSpringDamper></gazebo>
+  <gazebo reference="joint8"><implicitSpringDamper>true</implicitSpringDamper></gazebo>
+  <gazebo reference="joint9"><implicitSpringDamper>true</implicitSpringDamper></gazebo>
+  <gazebo reference="joint10"><implicitSpringDamper>true</implicitSpringDamper></gazebo>
+  <gazebo reference="joint11"><implicitSpringDamper>true</implicitSpringDamper></gazebo>
+
+  <!-- Gripper contact/friction properties for physical grasping -->
+  <gazebo reference="link6">
+    <mu1>50.0</mu1>
+    <mu2>50.0</mu2>
+    <kp>50000.0</kp>
+    <kd>10.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>0.0</maxVel>
+    <selfCollide>false</selfCollide>
+  </gazebo>
+
+  <gazebo reference="link7">
+    <mu1>50.0</mu1>
+    <mu2>50.0</mu2>
+    <kp>50000.0</kp>
+    <kd>10.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>0.0</maxVel>
+    <selfCollide>false</selfCollide>
+  </gazebo>
+
+  <gazebo reference="link8">
+    <mu1>50.0</mu1>
+    <mu2>50.0</mu2>
+    <kp>50000.0</kp>
+    <kd>10.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>0.0</maxVel>
+    <selfCollide>false</selfCollide>
+  </gazebo>
+
+  <gazebo reference="link9">
+    <mu1>50.0</mu1>
+    <mu2>50.0</mu2>
+    <kp>50000.0</kp>
+    <kd>10.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>0.0</maxVel>
+    <selfCollide>false</selfCollide>
+  </gazebo>
+
+  <gazebo reference="link10">
+    <mu1>50.0</mu1>
+    <mu2>50.0</mu2>
+    <kp>50000.0</kp>
+    <kd>10.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>0.0</maxVel>
+    <selfCollide>false</selfCollide>
+  </gazebo>
+
+  <gazebo reference="link11">
+    <mu1>50.0</mu1>
+    <mu2>50.0</mu2>
+    <kp>50000.0</kp>
+    <kd>10.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>0.0</maxVel>
+    <selfCollide>false</selfCollide>
+  </gazebo>
+
+  <!-- ============================================================ -->
+  <!-- Chase Camera：給 VLM 判斷用                                  -->
+  <!-- 位置：機器人後上方 0.8m + 後方 0.3m，往前下俯 30°            -->
+  <!-- 同時看到車身 + 前方桌面，避免被手臂遮擋                     -->
+  <!-- 輸出 topic: /chase_cam/image_raw（5Hz RGB，廣角 80°）        -->
+  <!-- ============================================================ -->
+  <link name="chase_cam_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia ixx="1.0E-5" ixy="0" ixz="0"
+               iyy="1.0E-5" iyz="0" izz="1.0E-5"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.04 0.04 0.04"/>
+      </geometry>
+      <material name="chase_cam_dark">
+        <color rgba="0.2 0.2 0.2 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="chase_cam_joint" type="fixed">
+    <!-- 後退 0.5m + 升高 1.1m + 俯 40°：越過 Orbbec 頭頂、看清車身與前方 -->
+    <origin xyz="-0.50 0 1.10" rpy="0 0.70 0"/>
+    <parent link="base_link"/>
+    <child link="chase_cam_link"/>
+  </joint>
+
+  <gazebo reference="chase_cam_joint">
+    <preserveFixedJoint>true</preserveFixedJoint>
+  </gazebo>
+
+  <link name="chase_cam_optical_frame"/>
+  <joint name="chase_cam_optical_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="-1.5707963 0 -1.5707963"/>
+    <parent link="chase_cam_link"/>
+    <child link="chase_cam_optical_frame"/>
+  </joint>
+
+  <gazebo reference="chase_cam_link">
+    <sensor type="camera" name="chase_camera">
+      <update_rate>5</update_rate>
+      <camera>
+        <horizontal_fov>1.4</horizontal_fov>
+        <image>
+          <width>2560</width>
+          <height>1440</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.05</near>
+          <far>20.0</far>
+        </clip>
+      </camera>
+      <plugin name="chase_cam_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>5</updateRate>
+        <cameraName>chase_cam</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>chase_cam_optical_frame</frameName>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <!-- ============================================================ -->
+  <!-- Judge Camera：給 E2 VLM judge 用，固定在車體 base_link 上     -->
+  <!-- 位置同 chase_cam：後上方俯視，可看到車身、夾爪與前方目標物     -->
+  <!-- 輸出 topic: /judge_camera/rgb/image_raw                      -->
+  <!-- ============================================================ -->
+  <link name="judge_camera_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia ixx="1.0E-5" ixy="0" ixz="0"
+               iyy="1.0E-5" iyz="0" izz="1.0E-5"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.04 0.04 0.04"/>
+      </geometry>
+      <material name="judge_camera_green">
+        <color rgba="0.0 0.8 0.2 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="judge_camera_joint" type="fixed">
+    <!-- 左側視角：車左方 0.75m、高 0.55m、略前 0.25m，向右看向車身（yaw=-π/2），俯角 0.35 rad -->
+    <origin xyz="0.25 0.75 0.55" rpy="0 0.35 -1.5707963"/>
+    <parent link="base_link"/>
+    <child link="judge_camera_link"/>
+  </joint>
+
+  <gazebo reference="judge_camera_joint">
+    <preserveFixedJoint>true</preserveFixedJoint>
+  </gazebo>
+
+  <link name="judge_camera_optical_frame"/>
+  <joint name="judge_camera_optical_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="-1.5707963 0 -1.5707963"/>
+    <parent link="judge_camera_link"/>
+    <child link="judge_camera_optical_frame"/>
+  </joint>
+
+  <gazebo reference="judge_camera_link">
+    <sensor type="camera" name="judge_camera">
+      <update_rate>5</update_rate>
+      <camera>
+        <horizontal_fov>1.4</horizontal_fov>
+        <image>
+          <width>1280</width>
+          <height>720</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.05</near>
+          <far>20.0</far>
+        </clip>
+      </camera>
+      <plugin name="judge_camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>5</updateRate>
+        <cameraName>judge_camera</cameraName>
+        <imageTopicName>rgb/image_raw</imageTopicName>
+        <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
+        <frameName>judge_camera_optical_frame</frameName>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+</robot>

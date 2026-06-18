@@ -1,0 +1,13 @@
+<launch>
+  <!--
+    sim_pick.launch
+    前提: run_gazebo.sh 已經在跑（red_block 已內建在 world 文件）
+
+    功能: 執行機械臂夾取動作
+      hand_open -> arm_clamp -> hand_close -> arm_uplift
+  -->
+
+  <node name="sim_pick" pkg="small_brain_sim" type="sim_pick.py"
+        output="screen"/>
+
+</launch>

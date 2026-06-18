@@ -1,0 +1,7 @@
+<launch>
+  <!-- Lightweight mapping RViz: no raw depth point cloud, no navigation overlays. -->
+  <node pkg="rviz" type="rviz" name="map_rviz" output="screen"
+        args="-d $(find small_brain_sim)/launch/map_view_light.rviz">
+    <env name="LD_LIBRARY_PATH" value="/usr/local/lib/x86_64-linux-gnu:$(env LD_LIBRARY_PATH)"/>
+  </node>
+</launch>

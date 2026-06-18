@@ -1,0 +1,77 @@
+<launch>
+  <!-- RTAB-Map localization + navigation — pure RGB-D, Gazebo ground truth odometry -->
+
+  <arg name="localization"   default="true"/>
+  <arg name="database_path"  default="~/.ros/rtabmap.db"/>
+  <arg name="rtabmapviz"     default="false"/>
+
+  <arg     if="$(arg localization)" name="rtabmap_args" default=""/>
+  <arg unless="$(arg localization)" name="rtabmap_args" default="--delete_db_on_start"/>
+
+  <group ns="rtabmap">
+
+    <node name="rtabmap" pkg="rtabmap_slam" type="rtabmap"
+          output="log" args="$(arg rtabmap_args)">
+      <param name="frame_id"      type="string" value="base_link"/>
+      <param name="odom_frame_id" type="string" value="world"/>
+      <param name="database_path" type="string" value="$(arg database_path)"/>
+
+      <!-- RGB-D direct subscription mode -->
+      <param name="subscribe_depth" type="bool" value="true"/>
+      <param name="subscribe_rgb"   type="bool" value="false"/>
+      <param name="subscribe_rgbd"  type="bool" value="false"/>
+      <param name="subscribe_scan"  type="bool" value="false"/>
+      <param name="approx_sync"     type="bool" value="true"/>
+      <param name="queue_size"      type="int"  value="10"/>
+
+      <!-- Camera topic remaps -->
+      <remap from="rgb/image"       to="/camera/rgb/image_raw"/>
+      <remap from="depth/image"     to="/camera/depth/image_raw"/>
+      <remap from="rgb/camera_info" to="/camera/rgb/camera_info"/>
+
+      <!-- Ground truth odometry -->
+      <remap from="odom" to="/ground_truth/odom"/>
+
+      <!-- Don't publish map→world TF; static identity below handles it -->
+      <param name="publish_tf" type="bool" value="false"/>
+
+      <!-- Visual registration, no lidar/ICP -->
+      <param name="Reg/Strategy"   type="string" value="0"/>
+      <param name="Reg/Force3DoF"  type="string" value="true"/>
+      <param name="Vis/MinInliers" type="string" value="15"/>
+      <param name="Vis/MaxDepth"   type="string" value="8.0"/>
+
+      <!-- 2D grid from depth -->
+      <param name="Grid/FromDepth"         type="string" value="true"/>
+      <param name="Grid/CellSize"          type="string" value="0.04"/>
+      <param name="Grid/DepthDecimation"   type="string" value="2"/>
+      <param name="Grid/MaxObstacleHeight" type="string" value="1.5"/>
+      <param name="Grid/MinGroundHeight"   type="string" value="-0.2"/>
+      <param name="Grid/MaxGroundHeight"   type="string" value="0.05"/>
+      <param name="Grid/RangeMin"          type="string" value="0.3"/>
+      <param name="Grid/RangeMax"          type="string" value="8.0"/>
+      <param name="Grid/RayTracing"                   type="string" value="true"/>
+      <param name="GridGlobal/MinSize"               type="string" value="20"/>
+      <param name="Grid/NoiseFilteringMinNeighbors"  type="string" value="3"/>
+      <param name="Grid/NoiseFilteringRadius"        type="string" value="0.04"/>
+
+      <!-- Localization vs mapping mode -->
+      <param     if="$(arg localization)" name="Mem/IncrementalMemory"    type="string" value="false"/>
+      <param unless="$(arg localization)" name="Mem/IncrementalMemory"    type="string" value="true"/>
+      <!-- 定位模式：載入所有地圖節點做全局重定位，不限於上次結束位置 -->
+      <param     if="$(arg localization)" name="Mem/InitWMWithAllNodes"   type="string" value="true"/>
+      <!-- 全局定位：允許從任意位置重定位 -->
+      <param     if="$(arg localization)" name="Rtabmap/StartNewMapOnLoopClosure" type="string" value="false"/>
+    </node>
+
+    <!-- Optional: rtabmapviz 3D visualizer -->
+    <node if="$(arg rtabmapviz)" pkg="rtabmap_viz" type="rtabmap_viz" name="rtabmapviz"
+          output="log">
+      <param name="frame_id"    type="string" value="base_link"/>
+      <param name="approx_sync" type="bool"   value="true"/>
+      <remap from="odom"        to="/ground_truth/odom"/>
+    </node>
+
+  </group>
+
+</launch>

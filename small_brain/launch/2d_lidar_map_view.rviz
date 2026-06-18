@@ -1,0 +1,87 @@
+Panels:
+  - Class: rviz/Displays
+    Name: Displays
+  - Class: rviz/Views
+    Name: Views
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Class: rviz/Grid
+      Name: Grid
+      Enabled: true
+      Cell Size: 1
+      Color: 160; 160; 164
+      Plane: XY
+      Reference Frame: <Fixed Frame>
+    - Class: rviz/RobotModel
+      Name: RobotModel
+      Enabled: true
+    - Class: rviz/TF
+      Name: TF
+      Enabled: false
+      Marker Scale: 0.3
+    - Class: rviz/LaserScan
+      Name: "2D Lidar Scan"
+      Enabled: true
+      Topic: /lidar_test/scan
+      Size (m): 0.04
+      Style: Flat Squares
+      Color Transformer: FlatColor
+      Color: 255; 60; 60
+      Alpha: 0.85
+    - Class: rviz/Map
+      Name: "2D Lidar Map (gmapping)"
+      Enabled: true
+      Topic: /lidar_test/map
+      Alpha: 0.8
+      Color Scheme: map
+      Draw Behind: false
+    - Class: rviz/Odometry
+      Name: "Gazebo Odom"
+      Enabled: true
+      Topic: /odom
+      Keep: 100
+      Shape:
+        Alpha: 1
+        Axes Length: 0.3
+        Axes Radius: 0.02
+        Color: 0; 255; 0
+        Head Length: 0.1
+        Head Radius: 0.05
+        Shaft Length: 0.3
+        Shaft Radius: 0.02
+        Value: Arrow
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: map_lidar_2d
+    Frame Rate: 30
+  Tools:
+    - Class: rviz/Interact
+    - Class: rviz/MoveCamera
+    - Class: rviz/Select
+    - Class: rviz/FocusCamera
+    - Class: rviz/Measure
+  Views:
+    Current:
+      Class: rviz/TopDownOrtho
+      Name: "Top-down 2D"
+      Scale: 50
+      Target Frame: base_link
+      X: 0
+      Y: 0
+    Saved:
+      - Class: rviz/Orbit
+        Name: "3D Orbit"
+        Distance: 15
+        Focal Point:
+          X: 0
+          Y: 0
+          Z: 0
+        Pitch: 0.8
+        Yaw: 3.14
+        Target Frame: map_lidar_2d
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 900
+  Width: 1200

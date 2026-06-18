@@ -1,0 +1,162 @@
+<launch>
+	<!--·······································参数设置区·······································-->
+  	<!--车型参数-->
+  	<arg name="car_mode" default="mini_mec_four_arm"
+       doc="opt:mini_mec_four_arm,mini_4wd_four_arm,mini_tank_four_arm,mini_mec_six_arm,mini_4wd_six_arm"/>
+    <arg if="$(eval car_mode=='mini_mec_four_arm' or car_mode=='mini_4wd_four_arm' or car_mode=='mini_tank_four_arm')" name="moveit_num" value="four_arm"/>
+    <arg if="$(eval car_mode=='mini_mec_six_arm' or car_mode=='mini_4wd_six_arm')" name="moveit_num" value="six_arm"/>
+	<!--RGB摄像头串口号-->
+	<arg name="video_device" default="/dev/RgbCam"/>
+	<!--机械臂起始关节序号-->
+	<arg if="$(eval car_mode=='mini_mec_four_arm' or car_mode=='mini_4wd_four_arm' or car_mode=='mini_mec_six_arm' or car_mode=='mini_4wd_six_arm')" name="joint_num"  default="4"/>
+	<arg if="$(eval car_mode=='mini_tank_four_arm')" name="joint_num"  default="2"/>
+	<!--判断是否开启虚拟机械臂 默认开启-->
+	<arg name="moveit_config" default="true"/>
+	<!--判断是否开启RGB相机 默认不开启-->
+	<arg name="use_camera" default="false"/>
+	<!--开启公共节点-->
+	<arg name="pub_node" default="true"/>
+	<!--是否关闭虚拟机械臂公共节点-->
+	<arg name="voi_arm_1" default="false"/>
+	<!--判断开启机械臂预设位置 -->
+	<arg name="preset" default="false"/>
+	<!--判断开启的功能 默认为false且参数不需要手动修改-->
+	<arg name="if_cartesian_demo" default="false"/>
+	<arg name="if_fk_demo" default="false"/>
+	<arg name="if_ik_demo" default="false"/>
+	<arg name="if_arm_pick_color" default="false"/>
+	<arg name="if_arm_pick_dp" default="false"/>
+	<arg name="if_test_param" default="false"/>
+	<arg name="if_voice_control" default="false"/>
+	<arg name="if_face_tracking" default="false"/>
+	<arg name="if_color_tracking" default="false"/>
+	<arg name="if_gesture_recognition" default="false"/>
+	<arg name="if_color_hsv_adjust" default="false"/>
+	<arg name="if_virtual_space_bostacle_avoidance" default="false"/>
+	<!--demo参数赋值-->
+	<arg if="$(eval if_cartesian_demo)" name="demo" value="$(arg moveit_num)_cartesian_demo"/>
+	<arg if="$(eval if_fk_demo)" name="demo" value="$(arg moveit_num)_fk_demo"/>
+	<arg if="$(eval if_ik_demo)" name="demo" value="$(arg moveit_num)_ik_demo"/>
+
+<!--·······································公共节点区·······································-->
+	<group if="$(arg pub_node)">
+	<!--打开节点wheeltec_robot，初始化串口等操作-->
+	<node pkg="wheeltec_arm_pick" type="wheeltec_$(arg moveit_num)" name="wheeltec_$(arg moveit_num)" output="screen" respawn="true">
+		<param name="joint_num"          type="int"    value="$(arg joint_num)"/>
+		<param name="usart_port_name"    type="string" value="/dev/wheeltec_controller"/>  
+		<param name="serial_baud_rate"   type="int"    value="115200"/>
+		<param name="robot_frame_id"     type="string" value="base_footprint"/>
+		<param name="smoother_cmd_vel"   type="string" value="smoother_cmd_vel"/> 
+		<param name="product_number"   type="int"    value="0"/>
+	</node>
+	</group>
+
+	<!--开启RGB摄像头-->
+	<node if="$(eval use_camera==true and moveit_num=='six_arm')" name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen" >
+	    <param name="video_device" value="$(arg video_device)" />
+	    <param name="image_width" value="640" />
+	    <param name="image_height" value="480" />
+	    <param name="pixel_format" value="yuyv" />
+	    <param name="camera_frame_id" value="usb_cam" />
+	    <param name="io_method" value="mmap"/>
+	    <remap from="/usb_cam/image_raw/compressed" to="/image_raw/compressed"/>
+	</node>
+	<include if="$(eval use_camera==true and moveit_num=='four_arm')" file="$(find astra_camera)/launch/astra.launch" />
+	<node if="$(eval use_camera==true and moveit_num=='four_arm')" pkg="tf" type="static_transform_publisher" name="base_to_link" args="0 0 0 0 0 0 base_footprint base_link 100"/>
+	<node if="$(eval use_camera==true and moveit_num=='four_arm')" pkg="tf" type="static_transform_publisher" name="base_to_camera" args="-0.118 0 0.5 0 0 0 base_footprint camera_link 100"/>
+
+	<!-- 开启虚拟机械臂  -->
+	<include if="$(arg moveit_config)" file="$(find mini_mec_six_arm_moveit_config)/launch/demo.launch">
+		 <arg if="$(eval voi_arm_1==true and moveit_num=='six_arm')" name="voi_arm" value="false"/>
+	</include>
+<!--·······································功能选择区·······································-->
+
+	<!--机械臂正逆解及笛卡尔空间路径 -->
+	<group if="$(eval if_cartesian_demo or if_fk_demo or if_ik_demo)">
+		<!--开启机械臂例程的节点-->
+		<node name="$(arg demo)" pkg="arm_demo" type="$(arg demo)" output="screen"/>
+	</group>
+
+
+	<!-- 机械臂夹取色块功能 -->
+	<group if="$(arg if_arm_pick_color)">
+	<include file='$(find wheeltec_arm_pick)/launch/car_location_color.launch'>
+		<arg name="car_mode" value="$(arg car_mode)"/>
+		<arg name="moveit_num" value="$(arg moveit_num)"/>
+	</include>
+	<!--开启色块识别程序-->
+	<include file='$(find wheeltec_arm_pick)/launch/visualTracker.launch'>
+		<arg name="moveit_num" value="$(arg moveit_num)"/>
+	</include>
+	<!--开启控制机械臂抓取/放置色块的节点-->
+	<node name="$(arg moveit_num)_control" pkg="wheeltec_arm_pick" type="$(arg moveit_num)_pick_and_put" output="screen"/>
+	</group>
+
+	<!-- 沙盘机械臂分拣功能 -->
+	<group if="$(arg if_arm_pick_dp)">	
+	<!--开启控制机械臂抓取/放置木块的节点-->
+	<node name="$(arg moveit_num)_control" pkg="wheeltec_arm_pick" type="$(arg moveit_num)_pick_and_put_dp" output="screen"/>
+	</group>
+
+
+	<!-- 机械臂参数测试功能 -->  
+	<group if="$(arg if_test_param)">
+	<node if="$(arg if_test_param)" name="$(arg moveit_num)_test_param" pkg="wheeltec_arm_pick" type="$(arg moveit_num)_test_param" output="screen">
+		<param name="car_mode" type="string" value="$(arg car_mode)"/>
+	</node>
+	<!--开启色块识别程序-->
+	<include file='$(find wheeltec_arm_pick)/launch/visualTracker.launch'>
+		<arg name="moveit_num" value="$(arg moveit_num)"/>
+	</include>
+	</group>
+
+
+	<!-- 语音控制机械臂 -->
+	<group if="$(eval if_voice_control==true and moveit_num=='six_arm')">
+	<!--语音节点初始化-->
+	<!-- <include file='$(find xf_mic_asr_offline)/launch/base.launch' /> -->
+	<node name='arm_node_feedback' pkg="wheeltec_arm_pick" type="arm_node_feedback"/>
+	<!--语音控制节点-->
+	<node name='voice_follower' pkg="wheeltec_arm_pick" type="voice_control_arm" output="screen"/>
+	</group>
+
+	<!--机械臂预设位置 -->
+	<group if="$(eval preset==true and moveit_num=='six_arm')">
+	<node name='preset' pkg="wheeltec_arm_pick" type="preset"/>
+	</group>
+	
+
+
+	<!-- 人脸跟随 -->
+	<group if="$(eval if_face_tracking==true and moveit_num=='six_arm')">
+	<!-- 开启人脸检测节点  -->
+  	<include file="$(find wheeltec_tracker_pkg)/launch/face_detector.launch" />		
+	</group>
+
+
+	<!-- 色块跟随 -->
+	<group if="$(arg if_color_tracking)">
+	</group>
+
+
+	<!-- 手势识别 -->
+	<group if="$(eval if_gesture_recognition==true and moveit_num=='six_arm')">
+	<!-- 开启gesture节点  -->
+	<node name="gesture_recognition" pkg="wheeltec_tracker_pkg" type="gesture_recognition.py"  output="screen"/>
+	<node name="gesture_recognition_execute" pkg="wheeltec_tracker_pkg" type="gesture_recognition_execute" output="screen"/>
+	</group>
+
+
+	<!-- HSV阈值调参 -->
+	<group if="$(eval if_color_hsv_adjust==true)">
+	<!--node name='pick_color' pkg="wheeltec_arm_six" type="color_sort_execute" output="screen"/-->
+  	<node name='color_hsv_adjust' pkg="wheeltec_arm_pick" type="color_hsv_adjust.py" output="screen"/>
+	</group>
+
+
+	<!-- 机械臂虚拟空间避障 -->
+	<group if="$(arg if_virtual_space_bostacle_avoidance)">
+	</group>
+</launch>
+
+

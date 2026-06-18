@@ -1,0 +1,8 @@
+<launch>
+  <!-- 开启机器人底层相关节点  -->
+  <include file="$(find wheeltec_arm_pick)/launch/base_serial.launch" >
+    <arg name="if_gesture_recognition" value="true"/>
+    <arg name="use_camera" value="true"/>
+    <arg name="moveit_config" value="false"/>
+  </include>
+</launch>

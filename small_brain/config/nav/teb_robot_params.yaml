@@ -1,0 +1,23 @@
+# TEB — 機器人專屬參數（mini_mec 麥輪，285.4×230mm）
+# 底盤實際尺寸：長 285.4mm、寬 230mm → 半長 143mm、半寬 115mm
+TebLocalPlannerROS:
+
+  # 麥輪硬體支援側移，但本系統強制 vy=0 → 改走 differential drive 模式
+  # 理由：單前置深度相機，FOV ~58°；側移 = 盲區運動。詳見 NAV_NOTES.md
+  max_vel_x:          0.4    # m/s 前後最大速度
+  max_vel_y:          0.0    # 禁用側移（配合 teb weight_kinematics_nh=1000）
+  max_vel_x_backwards: 0.0
+  max_vel_theta:      1.5    # rad/s 最大轉向速度
+  acc_lim_x:          1.0
+  acc_lim_y:          0.0    # 一致：vy 既然不能用，加速度上限歸零
+  acc_lim_theta:      2.0
+
+  # 麥輪不需要最小轉彎半徑
+  min_turning_radius:     0.0
+  wheelbase:              0.0
+  cmd_angle_instead_rotvel: false
+
+  # 足跡多邊形（四個角點，順序：左後→左前→右前→右後）
+  footprint_model:
+    type: polygon
+    vertices: [[-0.143, -0.115], [-0.143, 0.115], [0.143, 0.115], [0.143, -0.115]]

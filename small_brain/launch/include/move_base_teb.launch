@@ -1,0 +1,43 @@
+<launch>
+  <!-- Full move_base + TEB stack for A/B testing against EGO-Planner.
+       This launch intentionally does not start send_mark.py, so task scripts
+       can own /move_base goals without another node publishing goals. -->
+
+  <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan"
+        name="depthimage_to_laserscan" output="screen">
+    <param name="scan_height"      value="20"/>
+    <param name="range_min"        value="0.5"/>
+    <param name="range_max"        value="8.0"/>
+    <!-- LaserScan uses +X as forward. The camera optical frame uses +Z forward,
+         so publish the scan in camera_link to avoid a 90deg side offset. -->
+    <param name="output_frame_id"  value="camera_link"/>
+    <remap from="image"            to="/camera/depth/image_raw"/>
+    <remap from="camera_info"      to="/camera/depth/camera_info"/>
+    <remap from="scan"             to="/scan"/>
+  </node>
+
+  <node pkg="move_base" type="move_base" name="move_base"
+        respawn="true" respawn_delay="2.0" output="screen">
+    <rosparam file="$(find small_brain_sim)/config/nav/move_base_params.yaml"
+              command="load"/>
+    <param name="base_global_planner" value="global_planner/GlobalPlanner"/>
+    <rosparam file="$(find small_brain_sim)/config/nav/base_global_planner_param.yaml"
+              command="load"/>
+    <param name="GlobalPlanner/default_tolerance" value="0.5"/>
+
+    <param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS"/>
+    <rosparam file="$(find small_brain_sim)/config/nav/teb_local_planner_params.yaml"
+              command="load"/>
+    <rosparam file="$(find small_brain_sim)/config/nav/teb_robot_params.yaml"
+              command="load"/>
+
+    <rosparam file="$(find small_brain_sim)/config/nav/costmap_common_params.yaml"
+              command="load" ns="global_costmap"/>
+    <rosparam file="$(find small_brain_sim)/config/nav/costmap_common_params.yaml"
+              command="load" ns="local_costmap"/>
+    <rosparam file="$(find small_brain_sim)/config/nav/global_costmap_params.yaml"
+              command="load"/>
+    <rosparam file="$(find small_brain_sim)/config/nav/local_costmap_teb_params.yaml"
+              command="load"/>
+  </node>
+</launch>

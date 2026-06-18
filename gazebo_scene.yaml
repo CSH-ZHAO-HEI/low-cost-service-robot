@@ -1,0 +1,1007 @@
+# gazebo_scene.yaml — Gazebo 場景物件位置（自動生成）
+# 生成時間：2026-05-24 08:11:23
+# 接近距離：0.55m（底盤半長 0.143m → 車頭距物件 ≈ 0.407m）
+# 欄位說明：
+#   object_x/y   — 物件 XY 座標（公尺）
+#   place_x/y    — 機械臂放置點；大桌子取靠近邊緣的桌面點，垃圾桶取中心
+#   approach_x/y — 機器人底盤中心停靠位置
+#   approach_yaw — 機器人朝向（弧度，車頭 +X 朝向物件）
+#   bbox_half_x/y — SDF collision bbox 的 local XY 半寬（若可取得）
+
+AirconditionerA_01_001:
+  approach_x: -8.649
+  approach_y: 2.411
+  approach_yaw: 3.1416
+  bbox_half_x: 0.106
+  bbox_half_y: 0.498
+  object_x: -9.199
+  object_y: 2.411
+  place_x: -9.199
+  place_y: 2.411
+  surface_z: 2.460072068542481
+AirconditionerB_01_001:
+  approach_x: -1.45
+  approach_y: -5.227
+  approach_yaw: 3.1416
+  bbox_half_x: 0.255
+  bbox_half_y: 0.205
+  object_x: -2.005
+  object_y: -5.227
+  place_x: -1.93
+  place_y: -5.227
+  surface_z: 2.0261916040039063
+BalconyTable_01_001:
+  approach_x: -0.556
+  approach_y: 3.53
+  approach_yaw: 1.5708
+  bbox_half_x: 0.281
+  bbox_half_y: 0.282
+  object_x: -0.556
+  object_y: 4.111
+  place_x: -0.556
+  place_y: 4.01
+  surface_z: 0.2779593082666397
+Ball_01_001:
+  approach_x: 3.296
+  approach_y: 3.676
+  approach_yaw: 1.5708
+  object_x: 3.296
+  object_y: 4.226
+  place_x: 3.296
+  place_y: 4.226
+Ball_01_003:
+  approach_x: -6.396
+  approach_y: -4.222
+  approach_yaw: 3.1416
+  object_x: -6.946
+  object_y: -4.222
+  place_x: -6.946
+  place_y: -4.222
+Bed_01_001:
+  approach_x: -4.84
+  approach_y: 2.031
+  approach_yaw: 3.1416
+  bbox_half_x: 1.025
+  bbox_half_y: 1.005
+  object_x: -6.165
+  object_y: 2.031
+  place_x: -5.32
+  place_y: 2.031
+  surface_z: 1.2817607824707031
+Board_01_001:
+  approach_x: 2.779
+  approach_y: -4.843
+  approach_yaw: -1.5708
+  bbox_half_x: 0.569
+  bbox_half_y: 0.097
+  object_x: 2.779
+  object_y: -5.393
+  place_x: 2.779
+  place_y: -5.393
+  surface_z: 1.5939138153483638
+Carpet_01_001:
+  approach_x: 2.818
+  approach_y: -1.107
+  approach_yaw: 3.1416
+  bbox_half_x: 1.733
+  bbox_half_y: 2.007
+  object_x: 0.785
+  object_y: -1.107
+  place_x: 2.338
+  place_y: -1.107
+  surface_z: -0.006171375936508179
+Carpet_01_002:
+  approach_x: 2.854
+  approach_y: 1.143
+  approach_yaw: 1.5708
+  bbox_half_x: 1.733
+  bbox_half_y: 2.007
+  object_x: 2.854
+  object_y: 3.45
+  place_x: 2.854
+  place_y: 1.623
+  surface_z: -0.006692375936508179
+ChairA_01_001:
+  approach_x: 7.115
+  approach_y: -0.341
+  approach_yaw: 1.5708
+  bbox_half_x: 0.231
+  bbox_half_y: 0.242
+  object_x: 7.115
+  object_y: 0.209
+  place_x: 7.115
+  place_y: 0.154
+  surface_z: 0.3455979839079526
+ChairA_01_002:
+  approach_x: 5.698
+  approach_y: 0.219
+  approach_yaw: -0.0
+  bbox_half_x: 0.231
+  bbox_half_y: 0.242
+  object_x: 6.255
+  object_y: 0.219
+  place_x: 6.178
+  place_y: 0.219
+  surface_z: 0.33222098390795257
+ChairA_01_003:
+  approach_x: 5.517
+  approach_y: 1.681
+  approach_yaw: 0.0
+  bbox_half_x: 0.231
+  bbox_half_y: 0.242
+  object_x: 6.067
+  object_y: 1.681
+  place_x: 6.005
+  place_y: 1.681
+  surface_z: 0.3309129839079526
+ChairA_01_004:
+  approach_x: 6.45
+  approach_y: 1.671
+  approach_yaw: 0.0
+  bbox_half_x: 0.231
+  bbox_half_y: 0.242
+  object_x: 7.003
+  object_y: 1.671
+  place_x: 6.93
+  place_y: 1.671
+  surface_z: 0.3209129839079526
+ChairA_01_005:
+  approach_x: -7.721
+  approach_y: 1.917
+  approach_yaw: 3.1416
+  bbox_half_x: 0.231
+  bbox_half_y: 0.242
+  object_x: -8.271
+  object_y: 1.917
+  place_x: -8.22
+  place_y: 1.917
+  surface_z: 0.3575629839079526
+ChairD_01_001:
+  approach_x: -1.381
+  approach_y: 3.548
+  approach_yaw: 1.5708
+  bbox_half_x: 0.291
+  bbox_half_y: 0.257
+  object_x: -1.381
+  object_y: 4.104
+  place_x: -1.381
+  place_y: 4.028
+  surface_z: 0.3122504577636719
+ChairD_01_002:
+  approach_x: 0.325
+  approach_y: 3.547
+  approach_yaw: 1.5708
+  bbox_half_x: 0.291
+  bbox_half_y: 0.257
+  object_x: 0.325
+  object_y: 4.104
+  place_x: 0.325
+  place_y: 4.027
+  surface_z: 0.3122504577636719
+ChairD_01_003:
+  approach_x: -7.587
+  approach_y: -4.504
+  approach_yaw: 3.1416
+  bbox_half_x: 0.291
+  bbox_half_y: 0.257
+  object_x: -8.271
+  object_y: -4.504
+  place_x: -8.067
+  place_y: -4.504
+  surface_z: 0.3122504577636719
+Chandelier_01_001:
+  approach_x: 1.221
+  approach_y: 3.389
+  approach_yaw: 1.5708
+  bbox_half_x: 0.462
+  bbox_half_y: 0.467
+  object_x: 1.221
+  object_y: 4.156
+  place_x: 1.221
+  place_y: 3.869
+  surface_z: 2.273076171875
+Chandelier_01_002:
+  approach_x: -5.689
+  approach_y: -0.692
+  approach_yaw: 3.1416
+  bbox_half_x: 0.462
+  bbox_half_y: 0.467
+  object_x: -6.451
+  object_y: -0.692
+  place_x: -6.169
+  place_y: -0.692
+  surface_z: 2.7880761718750002
+Chandelier_01_003:
+  approach_x: 7.062
+  approach_y: -1.59
+  approach_yaw: 0.0
+  bbox_half_x: 0.462
+  bbox_half_y: 0.467
+  object_x: 7.824
+  object_y: -1.59
+  place_x: 7.542
+  place_y: -1.59
+  surface_z: 2.729076171875
+Chandelier_01_004:
+  approach_x: 1.221
+  approach_y: -0.825
+  approach_yaw: -1.5708
+  bbox_half_x: 0.462
+  bbox_half_y: 0.467
+  object_x: 1.221
+  object_y: -1.592
+  place_x: 1.221
+  place_y: -1.305
+  surface_z: 2.7653761718750003
+CoffeeTable_01_001:
+  approach_x: 1.512
+  approach_y: -1.099
+  approach_yaw: -1.5708
+  bbox_half_x: 0.663
+  bbox_half_y: 0.334
+  object_x: 1.512
+  object_y: -1.733
+  place_x: 1.512
+  place_y: -1.5
+  surface_z: 0.2686175863342285
+Coke:
+  approach_x: -0.556
+  approach_y: 3.29
+  approach_yaw: 1.5708
+  object_x: -0.556
+  object_y: 3.84
+  place_x: -0.556
+  place_y: 3.84
+CookingBench_01_001:
+  approach_x: 8.463
+  approach_y: -3.351
+  approach_yaw: 0.0
+  bbox_half_x: 0.273
+  bbox_half_y: 0.502
+  object_x: 9.038
+  object_y: -3.351
+  place_x: 8.943
+  place_y: -3.351
+  surface_z: 1.0015249413108827
+Curtain_01_001:
+  approach_x: -8.623
+  approach_y: 0.204
+  approach_yaw: 3.1416
+  bbox_half_x: 0.08
+  bbox_half_y: 1.214
+  object_x: -9.173
+  object_y: 0.204
+  place_x: -9.173
+  place_y: 0.204
+  surface_z: 2.444973945617676
+DeskPortraitA_01:
+  approach_x: -0.037
+  approach_y: -4.56
+  approach_yaw: -1.5708
+  bbox_half_x: 0.085
+  bbox_half_y: 0.053
+  object_x: -0.037
+  object_y: -5.11
+  place_x: -0.037
+  place_y: -5.11
+  surface_z: 0.7252410106212828
+DeskPortraitA_02:
+  approach_x: 2.046
+  approach_y: -1.343
+  approach_yaw: -1.5708
+  bbox_half_x: 0.085
+  bbox_half_y: 0.053
+  object_x: 2.046
+  object_y: -1.893
+  place_x: 2.046
+  place_y: -1.893
+  surface_z: 0.2969690106212828
+DeskPortraitB_01:
+  approach_x: 3.547
+  approach_y: -4.534
+  approach_yaw: -1.5708
+  bbox_half_x: 0.085
+  bbox_half_y: 0.052
+  object_x: 3.547
+  object_y: -5.084
+  place_x: 3.547
+  place_y: -5.084
+  surface_z: 0.2257183721923828
+DeskPortraitB_02:
+  approach_x: 2.486
+  approach_y: -4.553
+  approach_yaw: -1.5708
+  bbox_half_x: 0.085
+  bbox_half_y: 0.052
+  object_x: 2.486
+  object_y: -5.103
+  place_x: 2.486
+  place_y: -5.103
+  surface_z: 0.2257183721923828
+DeskPortraitC_02:
+  approach_x: 0.965
+  approach_y: -1.037
+  approach_yaw: -1.5708
+  bbox_half_x: 0.085
+  bbox_half_y: 0.044
+  object_x: 0.965
+  object_y: -1.587
+  place_x: 0.965
+  place_y: -1.587
+  surface_z: 0.29717184960937504
+DeskPortraitD_01:
+  approach_x: 2.646
+  approach_y: -4.826
+  approach_yaw: -1.5708
+  bbox_half_x: 0.074
+  bbox_half_y: 0.022
+  object_x: 2.646
+  object_y: -5.376
+  place_x: 2.646
+  place_y: -5.376
+  surface_z: 1.7061179896240235
+DeskPortraitD_02:
+  approach_x: -0.589
+  approach_y: -4.56
+  approach_yaw: -1.5708
+  bbox_half_x: 0.074
+  bbox_half_y: 0.022
+  object_x: -0.589
+  object_y: -5.11
+  place_x: -0.589
+  place_y: -5.11
+  surface_z: 0.32452498962402343
+DeskPortraitD_03:
+  approach_x: 2.377
+  approach_y: -1.465
+  approach_yaw: 3.1416
+  bbox_half_x: 0.074
+  bbox_half_y: 0.022
+  object_x: 1.827
+  object_y: -1.465
+  place_x: 1.827
+  place_y: -1.465
+  surface_z: 0.2585879896240234
+DeskPortraitD_04:
+  approach_x: 4.302
+  approach_y: -4.627
+  approach_yaw: -1.5708
+  bbox_half_x: 0.074
+  bbox_half_y: 0.022
+  object_x: 4.302
+  object_y: -5.177
+  place_x: 4.302
+  place_y: -5.177
+  surface_z: 0.33487598962402343
+Door_01_001:
+  approach_x: 6.001
+  approach_y: -4.999
+  approach_yaw: -1.5708
+  bbox_half_x: 0.005
+  bbox_half_y: 0.001
+  object_x: 6.001
+  object_y: -5.549
+  place_x: 6.001
+  place_y: -5.549
+  surface_z: 0.022270160347688944
+Dumbbell_01_001:
+  approach_x: 2.513
+  approach_y: 1.726
+  approach_yaw: 1.5708
+  bbox_half_x: 0.2
+  bbox_half_y: 0.691
+  object_x: 2.513
+  object_y: 2.718
+  place_x: 2.513
+  place_y: 2.206
+  surface_z: 0.40072761669921875
+FitnessEquipment_01_001:
+  approach_x: 3.485
+  approach_y: 2.312
+  approach_yaw: 1.5708
+  bbox_half_x: 0.559
+  bbox_half_y: 0.557
+  object_x: 3.485
+  object_y: 3.169
+  place_x: 3.485
+  place_y: 2.792
+  surface_z: 0.8966741591830163
+FloorB_01_001:
+  approach_x: 0.0
+  approach_y: -6.0
+  approach_yaw: 1.5708
+  bbox_half_x: 9.5
+  bbox_half_y: 5.7
+  object_x: 0.0
+  object_y: 0.0
+  place_x: 0.0
+  place_y: -5.52
+  surface_z: 0.0
+FoldingDoor_01_001:
+  approach_x: -1.911
+  approach_y: 1.844
+  approach_yaw: 3.1416
+  bbox_half_x: 0.049
+  bbox_half_y: 1.253
+  object_x: -2.461
+  object_y: 1.844
+  place_x: -2.461
+  place_y: 1.844
+  surface_z: 2.251984988647461
+FoldingDoor_01_002:
+  approach_x: -2.461
+  approach_y: -2.5
+  approach_yaw: -1.5708
+  bbox_half_x: 0.049
+  bbox_half_y: 1.253
+  object_x: -2.461
+  object_y: -4.053
+  place_x: -2.461
+  place_y: -2.98
+  surface_z: 2.251984988647461
+FoldingDoor_02_001:
+  approach_x: 4.674
+  approach_y: 1.601
+  approach_yaw: 1.5708
+  bbox_half_x: 0.054
+  bbox_half_y: 0.563
+  object_x: 4.674
+  object_y: 2.465
+  place_x: 4.674
+  place_y: 2.081
+  surface_z: 2.6028985595703125
+FoldingDoor_02_002:
+  approach_x: 4.891
+  approach_y: -3.986
+  approach_yaw: -1.5708
+  bbox_half_x: 0.054
+  bbox_half_y: 0.563
+  object_x: 4.891
+  object_y: -4.85
+  place_x: 4.891
+  place_y: -4.466
+  surface_z: 2.6028985595703125
+Handle_01_001:
+  approach_x: 5.724
+  approach_y: -4.973
+  approach_yaw: -1.5708
+  bbox_half_x: 0.001
+  bbox_half_y: 0.0
+  object_x: 5.724
+  object_y: -5.523
+  place_x: 5.724
+  place_y: -5.523
+  surface_z: 0.9947455899894238
+HouseWallB_01_001:
+  approach_x: 0.0
+  approach_y: -6.0
+  approach_yaw: 1.5708
+  bbox_half_x: 9.5
+  bbox_half_y: 5.7
+  object_x: 0.0
+  object_y: 0.0
+  place_x: 0.0
+  place_y: -5.52
+  surface_z: 3.0
+KitchenCabinet_01_001:
+  approach_x: 6.408
+  approach_y: -3.837
+  approach_yaw: 0.0
+  bbox_half_x: 1.291
+  bbox_half_y: 1.614
+  object_x: 8.002
+  object_y: -3.837
+  place_x: 8.002
+  place_y: -3.837
+  surface_z: 1.149788109726788
+KitchenTable_01_001:
+  approach_x: 5.34
+  approach_y: 0.951
+  approach_yaw: -0.0
+  bbox_half_x: 0.361
+  bbox_half_y: 0.91
+  object_x: 6.553
+  object_y: 0.951
+  place_x: 5.82
+  place_y: 0.951
+  surface_z: 0.45014644811404414
+KitchenUtensils_01_001:
+  approach_x: 8.735
+  approach_y: -5.021
+  approach_yaw: 0.0
+  bbox_half_x: 0.039
+  bbox_half_y: 0.219
+  object_x: 9.285
+  object_y: -5.021
+  place_x: 9.285
+  place_y: -5.021
+  surface_z: 1.4821205263113308
+LightC_01_001:
+  approach_x: 1.77
+  approach_y: -4.894
+  approach_yaw: -1.5708
+  bbox_half_x: 0.046
+  bbox_half_y: 0.06
+  object_x: 1.77
+  object_y: -5.444
+  place_x: 1.77
+  place_y: -5.444
+  surface_z: 2.1763778168660624
+LightC_01_002:
+  approach_x: -0.138
+  approach_y: -4.894
+  approach_yaw: -1.5708
+  bbox_half_x: 0.046
+  bbox_half_y: 0.06
+  object_x: -0.138
+  object_y: -5.444
+  place_x: -0.138
+  place_y: -5.444
+  surface_z: 2.1763778168660624
+NightStand_01_001:
+  approach_x: -7.726
+  approach_y: 2.31
+  approach_yaw: 1.5708
+  bbox_half_x: 0.37
+  bbox_half_y: 0.24
+  object_x: -7.726
+  object_y: 2.86
+  place_x: -7.726
+  place_y: 2.801
+  surface_z: 0.36938928846229335
+NightStand_01_002:
+  approach_x: -4.407    # 南側 demo：從 object_x 對齊，approach 從南方接近
+  approach_y: 2.26      # = object_y - 0.60 → 故意拉遠 0.60m（正常 0.44m），觸發 grasp_missed → adjust 用 extra_forward 補位
+  approach_yaw: 1.5708  # π/2 → 朝向 +Y（北 = 床頭櫃方向）
+  bbox_half_x: 0.37
+  bbox_half_y: 0.24
+  object_x: -4.407
+  object_y: 2.86
+  place_x: -4.407       # 對齊 object 中心
+  place_y: 2.86         # 中心 = 桌面正中（保留以前語意）
+  surface_z: 0.36938728846229335
+PortraitA_01:
+  approach_x: -2.162
+  approach_y: -4.818
+  approach_yaw: 3.1416
+  bbox_half_x: 0.249
+  bbox_half_y: 0.014
+  object_x: -2.712
+  object_y: -4.818
+  place_x: -2.712
+  place_y: -4.818
+  surface_z: 1.694492996296423
+PortraitA_02:
+  approach_x: 7.937
+  approach_y: 2.53
+  approach_yaw: 1.5708
+  bbox_half_x: 0.249
+  bbox_half_y: 0.014
+  object_x: 7.937
+  object_y: 3.08
+  place_x: 7.937
+  place_y: 3.08
+  surface_z: 0.9944929962964231
+PortraitB_01:
+  approach_x: -1.28
+  approach_y: -4.88
+  approach_yaw: -1.5708
+  bbox_half_x: 0.247
+  bbox_half_y: 0.022
+  object_x: -1.28
+  object_y: -5.43
+  place_x: -1.28
+  place_y: -5.43
+  surface_z: 0.6931880550927736
+PortraitB_02:
+  approach_x: 5.737
+  approach_y: 2.53
+  approach_yaw: 1.5708
+  bbox_half_x: 0.247
+  bbox_half_y: 0.022
+  object_x: 5.737
+  object_y: 3.08
+  place_x: 5.737
+  place_y: 3.08
+  surface_z: 0.9931880550927736
+PortraitB_03:
+  approach_x: 3.071
+  approach_y: -4.799
+  approach_yaw: -1.5708
+  bbox_half_x: 0.247
+  bbox_half_y: 0.022
+  object_x: 3.071
+  object_y: -5.349
+  place_x: 3.071
+  place_y: -5.349
+  surface_z: 0.6986820550927736
+PortraitC_01:
+  approach_x: -8.745
+  approach_y: -4.526
+  approach_yaw: 3.1416
+  bbox_half_x: 0.247
+  bbox_half_y: 0.012
+  object_x: -9.295
+  object_y: -4.526
+  place_x: -9.295
+  place_y: -4.526
+  surface_z: 1.6935713958740235
+PortraitD_01:
+  approach_x: 0.79
+  approach_y: -4.929
+  approach_yaw: -1.5708
+  bbox_half_x: 0.505
+  bbox_half_y: 0.025
+  object_x: 0.79
+  object_y: -5.479
+  place_x: 0.79
+  place_y: -5.479
+  surface_z: 2.294159698486328
+PortraitD_02:
+  approach_x: 6.87
+  approach_y: 2.53
+  approach_yaw: 1.5708
+  bbox_half_x: 0.505
+  bbox_half_y: 0.025
+  object_x: 6.87
+  object_y: 3.08
+  place_x: 6.87
+  place_y: 3.08
+  surface_z: 1.9825986984863282
+PortraitE_01:
+  approach_x: -5.773
+  approach_y: -4.942
+  approach_yaw: -1.5708
+  bbox_half_x: 0.275
+  bbox_half_y: 0.015
+  object_x: -5.773
+  object_y: -5.492
+  place_x: -5.773
+  place_y: -5.492
+  surface_z: 1.7680243644717986
+PortraitE_02:
+  approach_x: -6.193
+  approach_y: -1.04
+  approach_yaw: -1.5708
+  bbox_half_x: 0.275
+  bbox_half_y: 0.015
+  object_x: -6.193
+  object_y: -1.59
+  place_x: -6.193
+  place_y: -1.59
+  surface_z: 1.0680243644717984
+Rangehood_01_001:
+  approach_x: 8.439
+  approach_y: -3.37
+  approach_yaw: 0.0
+  bbox_half_x: 0.281
+  bbox_half_y: 0.623
+  object_x: 9.02
+  object_y: -3.37
+  place_x: 8.919
+  place_y: -3.37
+  surface_z: 2.6273305643705287
+ReadingDesk_01_001:
+  approach_x: -8.987
+  approach_y: 1.179
+  approach_yaw: 1.5708
+  bbox_half_x: 0.266
+  bbox_half_y: 0.577
+  object_x: -8.987
+  object_y: 2.057
+  place_x: -8.987
+  place_y: 1.659
+  surface_z: 0.743650965988636
+Refrigerator_01_001:
+  approach_x: 7.979
+  approach_y: -1.032
+  approach_yaw: 0.0
+  bbox_half_x: 0.522
+  bbox_half_y: 0.42
+  object_x: 8.703
+  object_y: -1.032
+  place_x: 8.459
+  place_y: -1.032
+  surface_z: 1.9605455017089843
+RoomWall_01_001:
+  approach_x: -1.985
+  approach_y: -1.496
+  approach_yaw: 3.1416
+  bbox_half_x: 3.813
+  bbox_half_y: 0.094
+  object_x: -6.098
+  object_y: -1.496
+  place_x: -2.465
+  place_y: -1.496
+  surface_z: 1.8956928135623932
+RoomWindow_01_001:
+  approach_x: -8.869
+  approach_y: -0.026
+  approach_yaw: 3.1416
+  bbox_half_x: 0.059
+  bbox_half_y: 1.182
+  object_x: -9.419
+  object_y: -0.026
+  place_x: -9.419
+  place_y: -0.026
+  surface_z: 2.207129048980713
+RoomWindow_01_002:
+  approach_x: -8.869
+  approach_y: -2.374
+  approach_yaw: 3.1416
+  bbox_half_x: 0.059
+  bbox_half_y: 1.182
+  object_x: -9.419
+  object_y: -2.374
+  place_x: -9.419
+  place_y: -2.374
+  surface_z: 2.207129048980713
+RoomWindow_01_003:
+  approach_x: 8.873
+  approach_y: -3.374
+  approach_yaw: 0.0
+  bbox_half_x: 0.059
+  bbox_half_y: 1.182
+  object_x: 9.423
+  object_y: -3.374
+  place_x: 9.423
+  place_y: -3.374
+  surface_z: 2.207129048980713
+RoomWindow_01_004:
+  approach_x: 8.873
+  approach_y: 0.969
+  approach_yaw: -0.0
+  bbox_half_x: 0.059
+  bbox_half_y: 1.182
+  object_x: 9.423
+  object_y: 0.969
+  place_x: 9.423
+  place_y: 0.969
+  surface_z: 2.200971048980713
+RoomWindow_01_005:
+  approach_x: 4.172
+  approach_y: 4.47
+  approach_yaw: 0.0
+  bbox_half_x: 0.059
+  bbox_half_y: 1.182
+  object_x: 4.722
+  object_y: 4.47
+  place_x: 4.722
+  place_y: 4.47
+  surface_z: 2.207129048980713
+RoomWindow_01_006:
+  approach_x: 3.489
+  approach_y: 5.051
+  approach_yaw: 1.5708
+  bbox_half_x: 0.059
+  bbox_half_y: 1.182
+  object_x: 3.489
+  object_y: 5.601
+  place_x: 3.489
+  place_y: 5.601
+  surface_z: 2.207129048980713
+RoomWindow_01_007:
+  approach_x: 1.141
+  approach_y: 5.051
+  approach_yaw: 1.5708
+  bbox_half_x: 0.059
+  bbox_half_y: 1.182
+  object_x: 1.141
+  object_y: 5.601
+  place_x: 1.141
+  place_y: 5.601
+  surface_z: 2.207129048980713
+RoomWindow_01_008:
+  approach_x: -1.199
+  approach_y: 5.051
+  approach_yaw: 1.5708
+  bbox_half_x: 0.059
+  bbox_half_y: 1.182
+  object_x: -1.199
+  object_y: 5.601
+  place_x: -1.199
+  place_y: 5.601
+  surface_z: 2.207129048980713
+RoomWindow_01_009:
+  approach_x: -1.847
+  approach_y: 4.388
+  approach_yaw: 3.1416
+  bbox_half_x: 0.059
+  bbox_half_y: 1.182
+  object_x: -2.397
+  object_y: 4.388
+  place_x: -2.397
+  place_y: 4.388
+  surface_z: 2.207129048980713
+SeasoningBox_01_001:
+  approach_x: 8.503
+  approach_y: -2.652
+  approach_yaw: 0.0
+  bbox_half_x: 0.303
+  bbox_half_y: 1.545
+  object_x: 9.108
+  object_y: -2.652
+  place_x: 8.983
+  place_y: -2.652
+  surface_z: 1.7254320142822266
+SecurityCamera_01_001:
+  approach_x: 0.842
+  approach_y: -4.446
+  approach_yaw: -1.5708
+  bbox_half_x: 0.054
+  bbox_half_y: 0.052
+  object_x: 0.842
+  object_y: -4.996
+  place_x: 0.842
+  place_y: -4.996
+  surface_z: 0.6424302049560546
+ShoeRack_01_001:
+  approach_x: 4.298
+  approach_y: -4.624
+  approach_yaw: -1.5708
+  bbox_half_x: 0.453
+  bbox_half_y: 0.155
+  object_x: 4.298
+  object_y: -5.174
+  place_x: 4.298
+  place_y: -5.174
+  surface_z: 1.1430639266967775
+SofaC_01_001:
+  approach_x: 0.331
+  approach_y: -0.386
+  approach_yaw: -1.5708
+  bbox_half_x: 1.216
+  bbox_half_y: 1.229
+  object_x: 0.331
+  object_y: -1.903
+  place_x: 0.331
+  place_y: -0.866
+  surface_z: 1.0381064554036028
+TVCabinet_01_001:
+  approach_x: 0.63
+  approach_y: -4.571
+  approach_yaw: -1.5708
+  bbox_half_x: 0.301
+  bbox_half_y: 1.398
+  object_x: 0.63
+  object_y: -5.184
+  place_x: 0.63
+  place_y: -5.184
+  surface_z: 0.49205294396972654
+TV_01_001:
+  approach_x: 0.824
+  approach_y: -4.833
+  approach_yaw: -1.5708
+  bbox_half_x: 0.03
+  bbox_half_y: 0.664
+  object_x: 0.824
+  object_y: -5.383
+  place_x: 0.824
+  place_y: -5.383
+  surface_z: 1.4746316826887131
+TV_02_001:
+  approach_x: -6.197
+  approach_y: -0.839
+  approach_yaw: -1.5708
+  bbox_half_x: 0.03
+  bbox_half_y: 0.664
+  object_x: -6.197
+  object_y: -1.389
+  place_x: -6.197
+  place_y: -1.389
+  surface_z: 1.4746316826887131
+Tableware_01_001:
+  approach_x: 7.153
+  approach_y: 0.433
+  approach_yaw: 1.5708
+  bbox_half_x: 0.174
+  bbox_half_y: 0.102
+  object_x: 7.153
+  object_y: 0.983
+  place_x: 7.153
+  place_y: 0.961
+  surface_z: 1.0534852823203993
+Trash_01_001:
+  approach_candidates:
+  - edge_dist: 0.144
+    is_free: true
+    side: E
+    x: 2.91
+    y: -0.796
+    yaw: 3.1416
+  - edge_dist: 0.144
+    is_free: true
+    side: W
+    x: 1.81
+    y: -0.796
+    yaw: -0.0
+  - edge_dist: 0.143
+    is_free: true
+    side: N
+    x: 2.36
+    y: -0.246
+    yaw: -1.5708
+  - edge_dist: 0.143
+    is_free: true
+    side: S
+    x: 2.36
+    y: -1.346
+    yaw: 1.5708
+  approach_x: 2.91
+  approach_y: -0.796
+  approach_yaw: 3.1416
+  bbox_half_x: 0.144
+  bbox_half_y: 0.143
+  object_x: 2.36
+  object_y: -0.796
+  place_x: 2.36
+  place_y: -0.796
+  surface_z: 0.143
+Trash_01_001_inside_cam:
+  approach_x: 2.91
+  approach_y: -0.796
+  approach_yaw: 3.1416
+  bbox_half_x: 0.144
+  bbox_half_y: 0.143
+  object_x: 2.36
+  object_y: -0.796
+  place_x: 2.36
+  place_y: -0.796
+  surface_z: 0.388
+Trash_01_002:
+  approach_x: -8.154
+  approach_y: 1.001
+  approach_yaw: 3.1416
+  bbox_half_x: 0.144
+  bbox_half_y: 0.143
+  object_x: -8.704
+  object_y: 1.001
+  place_x: -8.704
+  place_y: 1.001
+  surface_z: 0.143
+Vase_01_001:
+  approach_x: 3.056
+  approach_y: -4.863
+  approach_yaw: -1.5708
+  bbox_half_x: 0.054
+  bbox_half_y: 0.069
+  object_x: 3.056
+  object_y: -5.413
+  place_x: 3.056
+  place_y: -5.413
+  surface_z: 1.8840187345858326
+Wardrobe_01_001:
+  approach_x: -3.147
+  approach_y: 1.675
+  approach_yaw: 1.5708
+  bbox_half_x: 0.501
+  bbox_half_y: 0.322
+  object_x: -3.147
+  object_y: 2.476
+  place_x: -3.147
+  place_y: 2.155
+  surface_z: 2.145275171174248
+blue_block:
+  approach_x: 2.83
+  approach_y: -0.804
+  approach_yaw: 3.1416
+  object_x: 2.28
+  object_y: -0.804
+  place_x: 2.28
+  place_y: -0.804
+red_block:
+  approach_x: 2.816
+  approach_y: -0.808
+  approach_yaw: 3.1416
+  object_x: 2.266
+  object_y: -0.808
+  place_x: 2.266
+  place_y: -0.808
+yellow_block:
+  approach_x: 2.898
+  approach_y: -0.796
+  approach_yaw: 3.1416
+  object_x: 2.348
+  object_y: -0.796
+  place_x: 2.348
+  place_y: -0.796

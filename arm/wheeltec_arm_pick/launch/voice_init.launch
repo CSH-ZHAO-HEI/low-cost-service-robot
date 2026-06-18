@@ -1,0 +1,8 @@
+<launch>
+  <!--默认使用M2模块  -->
+  <arg name="sound_device"  default="true"/>
+  <!-- 初始化M2语音模块 -->
+    <include if="$(arg sound_device)" file='$(find xf_mic_asr_offline_circle)/launch/mic_init.launch'/>
+    <!-- 初始化M1语音模块 -->
+    <include unless="$(arg sound_device)" file='$(find xf_mic_asr_offline)/launch/mic_init.launch'/>
+</launch>

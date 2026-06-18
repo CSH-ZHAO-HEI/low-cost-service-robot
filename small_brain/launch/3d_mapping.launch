@@ -1,0 +1,16 @@
+<launch>
+  <!-- 3D RTAB-Map mapping on top of running Gazebo simulation
+       Run AFTER: ./run_gazebo.sh
+       Usage: roslaunch small_brain_sim 3d_mapping.launch
+       Source: JP515 3d_mapping.launch (adapted — camera already in Gazebo, no real-robot drivers needed)
+  -->
+
+  <arg name="database_path" default="~/.ros/rtabmap.db"/>
+  <arg name="rtabmapviz"    default="true"/>
+
+  <include file="$(find small_brain_sim)/launch/include/rtabmap_mapping.launch">
+    <arg name="database_path" value="$(arg database_path)"/>
+    <arg name="rtabmapviz"    value="$(arg rtabmapviz)"/>
+  </include>
+
+</launch>

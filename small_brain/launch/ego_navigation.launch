@@ -1,0 +1,28 @@
+<launch>
+  <!-- EGO-Planner 導航入口
+       用法：roslaunch small_brain_sim ego_navigation.launch
+       由 run_ego.sh 自動呼叫 -->
+
+  <!-- 靜態地圖暫停（塞滿走廊問題，需重新設計注入策略）-->
+  <!-- <node pkg="small_brain_sim" type="static_map_generator.py" name="static_map_generator" output="log"/> -->
+
+  <!-- ── 相機點雲過濾器（移除手臂近距離幽靈點）─────────────────────────── -->
+  <node pkg="small_brain_sim" type="async_cloud_merger.py"
+        name="async_cloud_merger" output="log"/>
+
+  <!-- ── EGO-Planner（map_type=1，/grid_map/cloud → /ego_cloud_input）──────── -->
+  <include file="$(find small_brain_sim)/launch/include/ego_planner.launch"/>
+
+  <!-- 深度圖 → LaserScan，供 move_base global/local costmap obstacle_layer 使用 -->
+  <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan"
+        name="depthimage_to_laserscan" output="log">
+    <param name="scan_height"    value="10"/>
+    <param name="output_frame_id" value="camera_depth_optical_frame"/>
+    <param name="range_min"      value="0.3"/>
+    <param name="range_max"      value="5.0"/>
+    <remap from="image"      to="/camera/depth/image_raw"/>
+    <remap from="camera_info" to="/camera/depth/camera_info"/>
+    <remap from="scan"        to="/scan"/>
+  </node>
+
+</launch>

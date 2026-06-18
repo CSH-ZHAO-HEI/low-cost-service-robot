@@ -1,0 +1,83 @@
+<launch>
+  <!-- JP515-style isolated mapping test.
+
+       This mirrors JP515 turn_on_wheeltec_robot/launch/3d_mapping.launch:
+       1) 2D lidar mapping with gmapping
+       2) RGB-D camera synchronized to rgbd_image
+       3) RTAB-Map subscribes rgbd_image + 2D scan, with occupancy grid from lidar
+
+       Isolation:
+       - Sim lidar topic: /lidar_test/scan
+       - 2D map topic: /lidar_test/map
+       - 2D map frame: map_lidar_2d
+       - RTAB namespace: /rtabmap_jp515_test
+       - RTAB db: ~/.ros/rtabmap_jp515_lidar_test.db
+  -->
+
+  <arg name="database_path" default="~/.ros/rtabmap_jp515_lidar_test.db"/>
+
+  <include file="$(find small_brain_sim)/launch/2d_lidar_mapping_test.launch">
+    <arg name="scan_topic" value="/lidar_test/scan"/>
+  </include>
+
+  <group ns="rtabmap_jp515_test">
+    <node pkg="nodelet" type="nodelet" name="rgbd_sync"
+          args="standalone rtabmap_sync/rgbd_sync" output="screen">
+      <remap from="rgb/image"       to="/camera/rgb/image_raw"/>
+      <remap from="depth/image"     to="/camera/depth/image_raw"/>
+      <remap from="rgb/camera_info" to="/camera/rgb/camera_info"/>
+      <remap from="rgbd_image"      to="rgbd_image"/>
+      <remap from="rtabmap/get_map_data" to="get_map_data"/>
+      <param name="approx_sync" value="true"/>
+      <param name="queue_size"  value="10"/>
+      <param name="approx_sync_max_interval" value="0.05"/>
+    </node>
+
+    <node name="rtabmap" pkg="rtabmap_slam" type="rtabmap" output="screen"
+          args="--delete_db_on_start">
+      <param name="frame_id"      type="string" value="base_link"/>
+      <param name="map_frame_id"  type="string" value="map_lidar_2d"/>
+      <!-- Use Gazebo ground-truth odometry. The isolated Gazebo launch provides
+           odom -> world identity TF, while gmapping still owns map_lidar_2d -> odom. -->
+      <param name="odom_frame_id" type="string" value="world"/>
+      <param name="database_path" type="string" value="$(arg database_path)"/>
+      <param name="publish_tf"    type="bool"   value="false"/>
+
+      <param name="subscribe_depth" type="bool" value="false"/>
+      <param name="subscribe_rgb"   type="bool" value="false"/>
+      <param name="subscribe_rgbd"  type="bool" value="true"/>
+      <param name="subscribe_scan"  type="bool" value="true"/>
+
+      <remap from="odom"       to="/ground_truth/odom"/>
+      <remap from="scan"       to="/lidar_test/scan"/>
+      <remap from="rgbd_image" to="rgbd_image"/>
+
+      <param name="sync_queue_size"  type="int" value="10"/>
+      <param name="topic_queue_size" type="int" value="10"/>
+      <param name="approx_sync"      type="bool" value="true"/>
+      <param name="approx_sync_max_interval" type="double" value="0.05"/>
+
+      <!-- JP515 core RTAB-Map parameters. -->
+      <param name="RGBD/NeighborLinkRefining" type="string" value="true"/>
+      <param name="RGBD/ProximityBySpace"     type="string" value="true"/>
+      <param name="RGBD/AngularUpdate"        type="string" value="0.01"/>
+      <param name="RGBD/LinearUpdate"         type="string" value="0.01"/>
+      <param name="RGBD/OptimizeFromGraphEnd" type="string" value="false"/>
+      <param name="RGBD/ProximityPathMaxNeighbors" type="string" value="1"/>
+
+      <!-- RTAB-Map 0.21 renamed Grid/FromDepth=false to Grid/Sensor=1.
+           Meaning: build the occupancy grid from lidar scan, not depth image. -->
+      <param name="Grid/Sensor"               type="string" value="1"/>
+      <param name="Grid/CellSize"             type="string" value="0.05"/>
+      <param name="Grid/RangeMax"             type="string" value="12.0"/>
+      <param name="Grid/RayTracing"           type="string" value="true"/>
+
+      <param name="Reg/Force3DoF"             type="string" value="true"/>
+      <param name="Reg/Strategy"              type="string" value="1"/>
+
+      <param name="Icp/VoxelSize"             type="string" value="0.05"/>
+      <param name="Icp/MaxCorrespondenceDistance" type="string" value="0.1"/>
+      <param name="Icp/PointToPlaneRadius"    type="string" value="0"/>
+    </node>
+  </group>
+</launch>

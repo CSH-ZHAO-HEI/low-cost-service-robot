@@ -1,0 +1,71 @@
+<launch>
+
+  <arg name="gui"    default="true"/>
+  <arg name="rviz"   default="false"/>
+  <arg name="moveit" default="false"/>
+  <arg name="x"      default="0.0"/>
+  <arg name="y"      default="0.0"/>
+  <arg name="z"      default="0.05"/>
+
+  <!-- Lidar experiment variant: normal robot + isolated /lidar_test/scan sensor. -->
+  <param name="robot_description"
+         textfile="$(find small_brain_sim)/urdf/mini_mec_six_arm_sim_lidar_test.urdf"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find aws_robomaker_small_house_world)/worlds/small_house.world"/>
+    <arg name="paused"        value="false"/>
+    <arg name="use_sim_time"  value="true"/>
+    <arg name="gui"           value="$(arg gui)"/>
+    <arg name="headless"      value="false"/>
+    <arg name="verbose"       value="true"/>
+    <arg name="pub_clock_frequency" value="1000"/>
+  </include>
+
+  <param name="/gazebo/pub_link_states_connection_hz"  value="1000"/>
+  <param name="/gazebo/pub_model_states_connection_hz" value="1000"/>
+
+  <node name="spawn_robot" pkg="gazebo_ros" type="spawn_model"
+        args="-urdf -param robot_description -model mini_mec_six_arm
+              -x $(arg x) -y $(arg y) -z $(arg z)"
+        output="screen" respawn="false"/>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher"
+        type="robot_state_publisher" output="screen">
+    <param name="publish_frequency" value="50.0"/>
+  </node>
+
+  <!-- Isolated lidar mapping TF tree:
+       gmapping owns map_lidar_2d -> odom, planar_move owns odom -> base_link.
+       /ground_truth/odom is stamped in Gazebo's "world" frame, so expose
+       world as a child of odom without taking ownership of map_lidar_2d. -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="odom_to_world_lidar_test"
+        args="0 0 0 0 0 0 odom world"/>
+
+  <rosparam file="$(find small_brain_sim)/config/sim_controllers.yaml" command="load"/>
+  <node name="controller_spawner" pkg="controller_manager" type="spawner"
+        args="joint_state_controller arm_controller hand_controller"
+        output="screen" respawn="false"/>
+
+  <node name="gripper_init" pkg="small_brain_sim" type="gripper_init.py"
+        output="screen" respawn="false"
+        launch-prefix="bash -c 'sleep 4 &amp;&amp; exec $0 $@'"/>
+
+  <include file="$(find mini_mec_six_arm_moveit_config)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="false"/>
+  </include>
+  <include file="$(find mini_mec_six_arm_moveit_config)/launch/move_group.launch">
+    <arg name="allow_trajectory_execution" value="true"/>
+    <arg name="fake_execution"             value="false"/>
+    <arg name="load_robot_description"     value="false"/>
+    <arg name="info"                       value="true"/>
+  </include>
+
+  <group if="$(arg moveit)">
+    <include file="$(find mini_mec_six_arm_moveit_config)/launch/moveit_rviz.launch">
+      <arg name="rviz_config" value="$(find mini_mec_six_arm_moveit_config)/launch/moveit.rviz"/>
+    </include>
+  </group>
+
+  <node name="rviz" pkg="rviz" type="rviz" if="$(arg rviz)" args=""/>
+
+</launch>

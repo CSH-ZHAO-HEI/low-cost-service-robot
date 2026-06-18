@@ -1,0 +1,66 @@
+<launch>
+
+  <arg name="gui"    default="true"/>
+  <arg name="rviz"   default="false"/>
+  <arg name="moveit" default="false"/>
+  <arg name="x"      default="0.0"/>
+  <arg name="y"      default="0.0"/>
+  <arg name="z"      default="0.05"/>
+
+  <!-- Load modified URDF (with Gazebo plugins + transmissions) -->
+  <param name="robot_description"
+         textfile="$(find small_brain_sim)/urdf/mini_mec_six_arm_sim.urdf"/>
+
+  <!-- Start Gazebo with warehouse world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find aws_robomaker_small_warehouse_world)/worlds/no_roof_small_warehouse.world"/>
+    <arg name="paused"        value="false"/>
+    <arg name="use_sim_time"  value="true"/>
+    <arg name="gui"           value="$(arg gui)"/>
+    <arg name="headless"      value="false"/>
+    <arg name="verbose"       value="true"/>
+  </include>
+
+  <!-- Spawn robot in the warehouse -->
+  <node name="spawn_robot" pkg="gazebo_ros" type="spawn_model"
+        args="-urdf -param robot_description -model mini_mec_six_arm
+              -x $(arg x) -y $(arg y) -z $(arg z)"
+        output="screen" respawn="false"/>
+
+  <!-- Robot state publisher (broadcasts TF from URDF) -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher"
+        type="robot_state_publisher" output="screen">
+    <param name="publish_frequency" value="50.0"/>
+  </node>
+
+  <!-- Load and start controllers -->
+  <rosparam file="$(find small_brain_sim)/config/sim_controllers.yaml" command="load"/>
+  <node name="controller_spawner" pkg="controller_manager" type="spawner"
+        args="joint_state_controller arm_controller hand_controller"
+        output="screen" respawn="false"/>
+
+  <!-- Optional: MoveIt move_group -->
+  <group if="$(arg moveit)">
+    <!-- Load SRDF, joint_limits, kinematics (不重新載入 URDF，用上面已載入的 sim URDF） -->
+    <include file="$(find mini_mec_six_arm_moveit_config)/launch/planning_context.launch">
+      <arg name="load_robot_description" value="false"/>
+    </include>
+
+    <!-- Start move_group -->
+    <include file="$(find mini_mec_six_arm_moveit_config)/launch/move_group.launch">
+      <arg name="allow_trajectory_execution" value="true"/>
+      <arg name="fake_execution"             value="false"/>
+      <arg name="load_robot_description"     value="false"/>
+      <arg name="info"                       value="true"/>
+    </include>
+
+    <!-- RViz with MoveIt plugin -->
+    <include file="$(find mini_mec_six_arm_moveit_config)/launch/moveit_rviz.launch">
+      <arg name="rviz_config" value="$(find mini_mec_six_arm_moveit_config)/launch/moveit.rviz"/>
+    </include>
+  </group>
+
+  <!-- Optional: RViz only (without MoveIt) -->
+  <node name="rviz" pkg="rviz" type="rviz" if="$(arg rviz)" args=""/>
+
+</launch>

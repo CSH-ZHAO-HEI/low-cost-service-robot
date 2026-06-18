@@ -1,0 +1,41 @@
+# Costmap 公用參數（全局/局部地圖共用）
+# 障礙物來源：深度相機轉換的 /scan（depthimage_to_laserscan），不使用實體雷射
+
+# 機器人足跡（costmap 用）
+footprint: [[-0.143, -0.115], [-0.143, 0.115], [0.143, 0.115], [0.143, -0.115]]
+
+# 靜態地圖層（吃 RTAB-Map 發布的 /rtabmap/grid_map）
+static_layer:
+  enabled:               true
+  map_topic:             /rtabmap/grid_map
+  unknown_cost_value:    -1
+  lethal_cost_threshold: 100
+  first_map_only:        false
+  subscribe_to_updates:  true
+  track_unknown_space:   true
+  trinary_costmap:       true
+
+# 障礙物層（用深度相機轉 LaserScan）
+obstacle_layer:
+  enabled:             true
+  observation_sources: depth_scan
+
+  depth_scan:
+    topic:                   /scan
+    sensor_frame:            camera_depth_optical_frame
+    data_type:               LaserScan
+    observation_persistence: 0.0
+    clearing:                true
+    marking:                 true
+    max_obstacle_height:     2.0
+    min_obstacle_height:     0.0
+    obstacle_range:          8.0   # 對應相機最大深度 8m
+    raytrace_range:          8.5
+
+  combination_method: 1   # 取最大值（障礙物優先）
+
+# 膨脹層
+inflation_layer:
+  enabled:            true
+  cost_scaling_factor: 5.0
+  inflation_radius:   0.2

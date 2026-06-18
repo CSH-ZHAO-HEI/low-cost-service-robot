@@ -1,0 +1,12 @@
+# 大脑（big_brain）Python 依赖 — pip 安装
+numpy
+sentence-transformers          # RAG 句向量编码（all-mpnet-base-v2）
+openai                         # 所有云端 LLM/VLM 走 OpenAI 兼容端点
+opencv-python                  # vlm_image_writer 写图
+shapely                        # ros_bridge / robot_api 几何（approach 点、可达性）
+trimesh                        # scripts/get_scene.py 读 SDF collision mesh 算 bbox/surface_z
+PyYAML                         # 读 gazebo_scene.yaml / semantic_map.yaml
+
+# —— 以下随 ROS Noetic 提供，勿用 pip 安装（用 apt 的 ros-noetic-*）——
+#   rospy, cv_bridge, gazebo_msgs, geometry_msgs, nav_msgs,
+#   move_base_msgs, sensor_msgs, std_srvs, trajectory_msgs, actionlib

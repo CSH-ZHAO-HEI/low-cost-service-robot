@@ -1,0 +1,276 @@
+[
+    {
+        "id": 1,
+        "command": "go to (1.5, 0)",
+        "task_queue": [
+            "move_to_xy(1.5, 0)"
+        ]
+    },
+    {
+        "id": 2,
+        "command": "pick up the red block",
+        "task_queue": [
+            "# pick up the red block",
+            "red_block_obj = parse_obj_name('red block', objects)",
+            "pick_up_obj(red_block_obj)"
+        ]
+    },
+    {
+        "id": 3,
+        "command": "put off the red block",
+        "task_queue": [
+            "# put off the red block",
+            "red_block_obj = parse_obj_name('red block', objects)",
+            "pick_up_obj(red_block_obj)",
+            "put_down_obj_by_offset(red_block_obj, 0, 0)"
+        ]
+    },
+    {
+        "id": 4,
+        "command": "go to (1.5, 0)",
+        "task_queue": [
+            "move_to_xy(1.5, 0)"
+        ]
+    },
+    {
+        "id": 5,
+        "command": "go to go to (1.5, 0)",
+        "task_queue": [
+            "move_to_xy(1.5, 0)"
+        ]
+    },
+    {
+        "id": 6,
+        "command": "go to (1.5, 0)",
+        "task_queue": [
+            "move_to_xy(1.5, 0)"
+        ]
+    },
+    {
+        "id": 7,
+        "command": "go to the trash 002",
+        "task_queue": [
+            "# go to the trash 002",
+            "trash_obj = parse_obj_name('trash 002', objects)",
+            "move_to_obj_by_offset(trash_obj, 0, 0)"
+        ]
+    },
+    {
+        "id": 8,
+        "command": "go to the trash 01",
+        "task_queue": [
+            "trash_obj = parse_obj_name('trash 01', objects)",
+            "move_to_obj_by_offset(trash_obj, 0, 0)"
+        ]
+    },
+    {
+        "id": 9,
+        "command": "go to trash 02",
+        "task_queue": [
+            "trash_obj = parse_obj_name('trash 02', objects)",
+            "move_to_obj_by_offset(trash_obj, 0, 0)"
+        ]
+    },
+    {
+        "id": 10,
+        "command": "go to the trash 01",
+        "task_queue": [
+            "# go to the trash 01",
+            "trash_obj = parse_obj_name('trash 01', objects)",
+            "move_to_obj_by_offset(trash_obj, 0, 0)"
+        ]
+    },
+    {
+        "id": 11,
+        "command": "move around the sofa in a 3x3 meter square",
+        "task_queue": [
+            "# move around the sofa in a 3x3 meter square",
+            "sofa_obj = parse_obj_name('sofa', objects)",
+            "sofa_x, sofa_y = get_obj_xy(sofa_obj)",
+            "move_to_xy(sofa_x+1.5, sofa_y+1.5)",
+            "move_to_xy(sofa_x+1.5, sofa_y-1.5)",
+            "move_to_xy(sofa_x-1.5, sofa_y-1.5)",
+            "move_to_xy(sofa_x-1.5, sofa_y+1.5)",
+            "move_to_xy(sofa_x+1.5, sofa_y+1.5)"
+        ]
+    },
+    {
+        "id": 12,
+        "command": "move around the sofa in a 4x4 meter square",
+        "task_queue": [
+            "# move around the sofa in a 4x4 meter square",
+            "sofa_obj = parse_obj_name('sofa', objects)",
+            "sofa_x, sofa_y = get_obj_xy(sofa_obj)",
+            "move_to_xy(sofa_x+2.0, sofa_y+2.0)",
+            "move_to_xy(sofa_x+2.0, sofa_y-2.0)",
+            "move_to_xy(sofa_x-2.0, sofa_y-2.0)",
+            "move_to_xy(sofa_x-2.0, sofa_y+2.0)",
+            "move_to_xy(sofa_x+2.0, sofa_y+2.0)"
+        ]
+    },
+    {
+        "id": 13,
+        "command": "pick up the red block",
+        "task_queue": [
+            "red_block_obj = parse_obj_name('red block', objects)",
+            "pick_up_obj(red_block_obj)"
+        ]
+    },
+    {
+        "id": 14,
+        "command": "put the red block on the coffeetable",
+        "task_queue": [
+            "# put the red block on the coffeetable",
+            "red_block_obj = parse_obj_name('red block', objects)",
+            "coffeetable_obj = parse_obj_name('coffeetable', objects)",
+            "pick_up_obj(red_block_obj)",
+            "put_down_obj_by_offset(coffeetable_obj, 0, 0)"
+        ]
+    },
+    {
+        "id": 15,
+        "command": "put the red block on the balconytable01",
+        "task_queue": [
+            "# put the red block on the balconytable01",
+            "red_block_obj = parse_obj_name('red block', objects)",
+            "balconytable01_obj = parse_obj_name('balconytable01', objects)",
+            "pick_up_obj(red_block_obj)",
+            "put_down_obj_by_offset(balconytable01_obj, 0, 0)"
+        ]
+    },
+    {
+        "id": 16,
+        "command": "put the red block on the trash01",
+        "task_queue": [
+            "# put the red block on the trash01",
+            "red_block_obj = parse_obj_name('red block', objects)",
+            "trash01_obj = parse_obj_name('trash01', objects)",
+            "move_to_obj_by_offset(red_block_obj, 0, 0)",
+            "pick_up_obj(red_block_obj)",
+            "move_to_obj_by_offset(trash01_obj, 0, 0)",
+            "put_down_obj_by_offset(trash01_obj, 0, 0)"
+        ]
+    },
+    {
+        "id": 17,
+        "command": "put the red block on the balconytable01",
+        "task_queue": [
+            "# put the red block on the balconytable01",
+            "red_block_obj = parse_obj_name('red block', objects)",
+            "balconytable01_obj = parse_obj_name('balconytable01', objects)",
+            "pick_up_obj(red_block_obj)",
+            "put_down_obj_by_offset(balconytable01_obj, 0, 0)"
+        ]
+    },
+    {
+        "id": 18,
+        "command": "pick up the red block",
+        "task_queue": [
+            "red_block_obj = parse_obj_name('red block', objects)",
+            "pick_up_obj(red_block_obj)"
+        ]
+    },
+    {
+        "id": 19,
+        "command": "put down the red block",
+        "task_queue": [
+            "red_block_obj = parse_obj_name('red block', objects)",
+            "put_down_obj_by_offset(red_block_obj, 0, 0)"
+        ]
+    },
+    {
+        "id": 20,
+        "command": "put the red block on the balconytable01",
+        "task_queue": [
+            "# put the red block on the balconytable01",
+            "red_block_obj = parse_obj_name('red block', objects)",
+            "balconytable01_obj = parse_obj_name('balconytable01', objects)",
+            "pick_up_obj(red_block_obj)",
+            "put_down_obj_by_offset(balconytable01_obj, 0, 0)"
+        ]
+    },
+    {
+        "id": 21,
+        "command": "put the red block on the cofficetable",
+        "task_queue": [
+            "# put the red block on the cofficetable",
+            "red_block_obj = parse_obj_name('red block', objects)",
+            "coffeetable_obj = parse_obj_name('cofficetable', objects)",
+            "pick_up_obj(red_block_obj)",
+            "put_down_obj_by_offset(coffeetable_obj, 0, 0)"
+        ]
+    },
+    {
+        "id": 22,
+        "command": "go to the trash",
+        "task_queue": [
+            "trash_obj = parse_obj_name('trash', objects)",
+            "move_to_obj_by_offset(trash_obj, 0, 0)"
+        ]
+    },
+    {
+        "id": 23,
+        "command": "put the red block on the balconytable01",
+        "task_queue": [
+            "red_block_obj = parse_obj_name('red block', objects)",
+            "balconytable01_obj = parse_obj_name('balconytable01', objects)",
+            "pick_up_obj(red_block_obj)",
+            "put_down_obj_by_offset(balconytable01_obj, 0, 0)"
+        ]
+    },
+    {
+        "id": 24,
+        "command": "put the red block on the balconytable01",
+        "task_queue": [
+            "red_block_obj = parse_obj_name('red block', objects)",
+            "balconytable01_obj = parse_obj_name('balconytable01', objects)",
+            "pick_up_obj(red_block_obj)",
+            "put_down_obj_by_offset(balconytable01_obj, 0, 0)"
+        ]
+    },
+    {
+        "id": 25,
+        "command": "put the red block on the balconytable01",
+        "task_queue": [
+            "red_block_obj = parse_obj_name('red block', objects)",
+            "balconytable01_obj = parse_obj_name('balconytable01', objects)",
+            "pick_up_obj(red_block_obj)",
+            "put_down_obj_by_offset(balconytable01_obj, 0, 0)"
+        ]
+    },
+    {
+        "id": 26,
+        "command": "go to the trash002",
+        "task_queue": [
+            "trash_obj = parse_obj_name('trash002', objects)",
+            "move_to_obj_by_offset(trash_obj, 0, 0)"
+        ]
+    },
+    {
+        "id": 27,
+        "command": "move around the sofa in a 4x4 meter square",
+        "task_queue": [
+            "sofa_obj = parse_obj_name('sofa', objects)",
+            "sofa_x, sofa_y = get_obj_xy(sofa_obj)",
+            "move_to_xy(sofa_x+2.0, sofa_y+2.0)",
+            "move_to_xy(sofa_x+2.0, sofa_y-2.0)",
+            "move_to_xy(sofa_x-2.0, sofa_y-2.0)",
+            "move_to_xy(sofa_x-2.0, sofa_y+2.0)",
+            "move_to_xy(sofa_x+2.0, sofa_y+2.0)"
+        ]
+    },
+    {
+        "id": 28,
+        "command": "Move around the sofa in a 4x4 meter square",
+        "task_queue": [
+            "# Move around the sofa in a 4x4 meter square",
+            "sofa_obj = parse_obj_name('sofa', objects)",
+            "sofa_x, sofa_y = get_obj_xy(sofa_obj)",
+            "move_to_xy(sofa_x+2.0, sofa_y+2.0)",
+            "move_to_xy(sofa_x+2.0, sofa_y-2.0)",
+            "move_to_xy(sofa_x-2.0, sofa_y-2.0)",
+            "move_to_xy(sofa_x-2.0, sofa_y+2.0)",
+            "move_to_xy(sofa_x+2.0, sofa_y+2.0)"
+        ]
+    }
+]

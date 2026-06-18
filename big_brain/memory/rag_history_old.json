@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "command": "move to the desk, pick up the cup and put it down on the chair",
+    "task_queue": [
+        "move_to_obj_by_offset('Desk',0,0)",
+        "pick_up_obj('Cup')",
+        "move_to_obj_by_offset('Chair', 0, 0)",
+        "put_down_obj_by_offset('Chair', 0, 0)"
+    ]
+  },
+  {
+    "id": 2,
+    "command": "pick up the apple",
+    "task_queue": [
+        "move_to_obj_by_offset('Apple', 0, 0)",
+        "pick_up_obj('Apple')"
+    ]
+  },
+  {
+    "id":3,
+    "command": "Move around the chair in a circular path with a radius of 1 meter",
+    "task_queue": [
+        "chair_x, chair_y = get_obj_xy('Chair')",
+        "radius = 100",
+        "for angle in np.linspace(0, 2*np.pi, 9)[:-1]:",
+        "   x = chair_x + radius * np.cos(angle)",
+        "   y = chair_y + radius * np.sin(angle)",
+        "   move_to_xy(x, y)"
+    ]
+  }
+]

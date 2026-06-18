@@ -1,0 +1,15 @@
+GlobalPlanner:
+  use_dijkstra:         true
+  use_quadratic:        true
+  old_navfn_behavior:   false
+  publish_potential:    true
+  use_grid_path:        false
+  allow_unknown:        false
+  default_tolerance:    0.0
+  visualize_potential:  false
+  lethal_cost:          253
+  neutral_cost:         50
+  cost_factor:          0.55
+  orientation_mode:        1   # forward：朝向 = 行進切線方向
+  orientation_window_size: 8   # 取前後 8 個點平均，消除鋸齒
+  outline_map:          true

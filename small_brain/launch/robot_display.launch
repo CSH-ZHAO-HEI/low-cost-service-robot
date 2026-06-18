@@ -1,0 +1,29 @@
+<launch>
+  <!-- 独立显示移臂小车模型（不需要 Gazebo），用于 RViz 截图 -->
+  <!-- 用法：bash show_robot.sh    然后拖滑块摆姿态、在 RViz 里旋转视角、截图 -->
+
+  <arg name="urdf" default="$(find small_brain_sim)/urdf/mini_mec_six_arm_sim.urdf"/>
+
+  <!-- 1. 载入 URDF 到 robot_description -->
+  <param name="robot_description" textfile="$(arg urdf)"/>
+
+  <!-- 2. 关节滑块 GUI：默认摆成 ARM_CLAMP 待机姿态，可手动调 -->
+  <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui">
+    <rosparam param="zeros">
+      joint2: -1.1
+      joint3: 0.66
+      joint4: 1.0
+    </rosparam>
+  </node>
+
+  <!-- 3. 由关节状态广播 TF -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+  <!-- 4. RViz：白底干净配置 + WSL2 Mesa 渲染环境（否则 STL 网格出不来）-->
+  <node name="rviz" pkg="rviz" type="rviz" required="true"
+        args="-d $(find small_brain_sim)/launch/robot_clean.rviz" output="screen">
+    <env name="LD_LIBRARY_PATH" value="/usr/local/lib/x86_64-linux-gnu:$(env LD_LIBRARY_PATH)"/>
+    <env name="MESA_LOADER_DRIVER_OVERRIDE" value="d3d12"/>
+    <env name="MESA_D3D12_DEFAULT_ADAPTER_NAME" value="NVIDIA"/>
+  </node>
+</launch>

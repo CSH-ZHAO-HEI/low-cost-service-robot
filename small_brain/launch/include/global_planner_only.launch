@@ -1,0 +1,29 @@
+<launch>
+  <!-- 最小化 move_base：只提供 /move_base/make_plan 全局規劃服務
+       controller_frequency=0 → 不執行 local planner，不發 cmd_vel
+       由 run_ego.sh 啟動，供 pick_deliver.py 的 waypoint_bridge 使用 -->
+
+  <node pkg="move_base" type="move_base" name="move_base" respawn="true" respawn_delay="2.0" output="log">
+    <remap from="cmd_vel" to="/move_base/cmd_vel_unused"/>
+    <param name="base_global_planner"  value="global_planner/GlobalPlanner"/>
+    <param name="base_local_planner"   value="dwa_local_planner/DWAPlannerROS"/>
+
+    <!-- 只提供規劃服務，不執行 local planner 也不發 cmd_vel -->
+    <param name="controller_frequency" value="1.0"/>
+    <param name="planner_frequency"    value="1.0"/>
+    <param name="recovery_behavior_enabled" value="false"/>
+    <param name="clearing_rotation_allowed" value="false"/>
+
+    <rosparam file="$(find small_brain_sim)/config/nav/base_global_planner_param.yaml"
+              command="load"/>
+    <rosparam file="$(find small_brain_sim)/config/nav/costmap_common_params.yaml"
+              command="load" ns="global_costmap"/>
+    <rosparam file="$(find small_brain_sim)/config/nav/costmap_common_params.yaml"
+              command="load" ns="local_costmap"/>
+    <rosparam file="$(find small_brain_sim)/config/nav/global_costmap_params.yaml"
+              command="load"/>
+    <rosparam file="$(find small_brain_sim)/config/nav/local_costmap_params.yaml"
+              command="load"/>
+  </node>
+
+</launch>

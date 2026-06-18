@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="Coke">
+    <static>true</static>
+    <link name="link">
+      <!-- 無碰撞：純視覺 + SetModelState 驅動，與 red_block 相同機制 -->
+      <visual name="vis">
+        <geometry>
+          <mesh>
+            <uri>model://coke/meshes/coke.obj</uri>
+            <!-- scale 0.8 → 高 11.6cm × 寬 4.8cm，貼圖貼圖已放在 meshes/ -->
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

@@ -1,0 +1,104 @@
+<launch>
+  <!-- RTAB-Map 3D mapping — pure RGB-D, no lidar, Gazebo ground truth odometry
+       subscribe_depth=true: RTAB-Map natively subscribes rgb/image + depth/image + camera_info
+       (avoids rgbd_sync stereo model bug when both RGB and Depth share same camera frame)
+       Odometry: /ground_truth/odom (libgazebo_ros_p3d, zero drift)
+       Camera:   Astra S sim, 0.5~8.0m depth range
+  -->
+
+  <arg name="database_path" default="~/.ros/rtabmap.db"/>
+  <arg name="rtabmapviz"    default="true"/>
+
+  <group ns="rtabmap">
+
+    <node name="rtabmap" pkg="rtabmap_slam" type="rtabmap" output="screen"
+          args="--delete_db_on_start">
+      <param name="frame_id"      type="string" value="base_link"/>
+      <param name="odom_frame_id" type="string" value="world"/>
+      <param name="database_path" type="string" value="$(arg database_path)"/>
+
+      <!-- RGB-D direct subscription mode (no rgbd_sync nodelet needed) -->
+      <param name="subscribe_depth" type="bool" value="true"/>
+      <param name="subscribe_rgb"   type="bool" value="false"/>
+      <param name="subscribe_rgbd"  type="bool" value="false"/>
+      <param name="subscribe_scan"  type="bool" value="false"/>
+      <param name="approx_sync"          type="bool" value="true"/>
+      <param name="queue_size"           type="int"  value="30"/>
+      <param name="topic_queue_size"     type="int"  value="30"/>
+
+      <!-- Camera topic remaps -->
+      <remap from="rgb/image"       to="/camera/rgb/image_raw"/>
+      <remap from="depth/image"     to="/camera/depth/image_raw"/>
+      <remap from="rgb/camera_info" to="/camera/rgb/camera_info"/>
+
+      <!-- Ground truth odometry from Gazebo physics (libgazebo_ros_p3d, zero drift) -->
+      <remap from="odom" to="/ground_truth/odom"/>
+
+      <!-- TF timing fix: wait up to 0.5s for TF before dropping a frame -->
+      <param name="wait_for_transform_duration" type="double" value="0.5"/>
+
+      <!-- p3d covariance fix: override zero-covariance from libgazebo_ros_p3d -->
+      <param name="odom_tf_linear_variance"  type="double" value="0.001"/>
+      <param name="odom_tf_angular_variance" type="double" value="0.001"/>
+
+      <!-- 建圖模式：必須明確設 true，否則殘留 param 會讓地圖建不起來 -->
+      <param name="Mem/IncrementalMemory"  type="string" value="true"/>
+      <param name="Rtabmap/DetectionRate"  type="string" value="2"/>
+
+      <!-- ==== Motion update: only add node when robot moves ==== -->
+      <param name="RGBD/LinearUpdate"         type="string" value="0.05"/>
+      <param name="RGBD/AngularUpdate"        type="string" value="0.05"/>
+      <param name="RGBD/OptimizeFromGraphEnd" type="string" value="false"/>
+      <param name="RGBD/NeighborLinkRefining" type="string" value="false"/>
+      <param name="RGBD/ProximityBySpace"     type="string" value="false"/>
+
+      <!-- ==== Visual registration (no ICP, no lidar) ==== -->
+      <param name="Reg/Strategy"   type="string" value="0"/> <!-- 0=Visual -->
+      <param name="Reg/Force3DoF"  type="string" value="true"/>
+      <param name="Vis/MinInliers" type="string" value="25"/>
+      <param name="Vis/MaxDepth"   type="string" value="8.0"/>
+
+      <!-- ==== 2D Occupancy Grid from depth ==== -->
+      <param name="Grid/Sensor"              type="string" value="1"/>
+      <param name="Grid/CellSize"            type="string" value="0.04"/>
+      <param name="Grid/DepthDecimation"     type="string" value="2"/>
+      <param name="Grid/PreVoxelFiltering"   type="string" value="true"/>
+      <param name="Grid/MaxObstacleHeight"   type="string" value="2.0"/>
+      <param name="Grid/MinGroundHeight"     type="string" value="-0.2"/>
+      <param name="Grid/MaxGroundHeight"     type="string" value="0.05"/>
+      <param name="Grid/RangeMin"            type="string" value="0.3"/>
+      <param name="Grid/RangeMax"            type="string" value="8.0"/>
+      <param name="Grid/NormalsSegmentation" type="string" value="false"/>
+      <param name="Grid/RayTracing"          type="string" value="true"/>
+
+      <!-- ==== Grid map noise filtering ==== -->
+      <!-- Wall surfaces in Gazebo are thin, so keep filtering modest. -->
+      <param name="Grid/NoiseFilteringMinNeighbors" type="string" value="3"/>
+      <param name="Grid/NoiseFilteringRadius"       type="string" value="0.04"/>
+
+      <!-- ==== Loop closure DISABLED ====
+           GT odometry has zero drift → loop closure only causes false merges between similar rooms.
+           Kp/MaxFeatures=0 disables feature extraction → no loop closure detection at all. -->
+      <param name="Kp/MaxFeatures"             type="string" value="-1"/>
+      <param name="RGBD/ProximityBySpace"      type="string" value="false"/>
+      <param name="RGBD/NeighborLinkRefining"  type="string" value="false"/>
+      <param name="VhEp/Enabled"               type="string" value="false"/>
+      <param name="Mem/DepthCompressionFormat" type="string" value=".png"/>
+    </node>
+
+    <!-- rtabmapviz: 3D visualizer (loop closure graph, point cloud, occupancy grid) -->
+    <node if="$(arg rtabmapviz)" pkg="rtabmap_viz" type="rtabmap_viz" name="rtabmapviz"
+          output="screen">
+      <param name="frame_id"        type="string" value="base_link"/>
+      <param name="odom_frame_id"   type="string" value="odom"/>
+      <param name="subscribe_depth" type="bool"   value="true"/>
+      <param name="subscribe_scan"  type="bool"   value="false"/>
+      <param name="approx_sync"     type="bool"   value="true"/>
+      <remap from="rgb/image"       to="/camera/rgb/image_raw"/>
+      <remap from="depth/image"     to="/camera/depth/image_raw"/>
+      <remap from="rgb/camera_info" to="/camera/rgb/camera_info"/>
+      <remap from="odom"            to="/ground_truth/odom"/>
+    </node>
+
+  </group>
+</launch>

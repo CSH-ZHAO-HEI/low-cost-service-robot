@@ -1,0 +1,128 @@
+<launch>
+  <!-- EGO-Planner Ground Robot — adapted for Wheeltec Mini Mec + Orbbec Astra
+       base_link -X = 車頭（前進方向 / 手臂側）
+       Goal input  : /ego_planner/goal (geometry_msgs/PoseStamped, x/y only)
+       Odom input  : /ground_truth/odom  (absolute pose from Gazebo p3d)
+       Depth input : /camera/depth/image_raw  (32FC1, metres)
+       Output      : /cmd_vel (geometry_msgs/Twist)
+  -->
+
+  <!-- Local map size (small house world: ~10x8m) -->
+  <arg name="map_size_x" default="20.0"/>
+  <arg name="map_size_y" default="20.0"/>
+  <arg name="map_size_z" default=" 2.5"/>
+
+  <arg name="odom_topic"  default="/ground_truth/odom"/>
+  <arg name="depth_topic" default="/camera/depth/image_raw"/>
+  <arg name="goal_topic"  default="/ego_planner/goal"/>
+
+  <!-- Orbbec Astra S depth camera intrinsics (640x480, HFOV=58.4°)
+       fx = fy = 320 / tan(0.5097) = 573.9  cx=320  cy=240 -->
+  <arg name="cx" default="320.0"/>
+  <arg name="cy" default="240.0"/>
+  <arg name="fx" default="573.9"/>
+  <arg name="fy" default="573.9"/>
+
+  <!-- ego_planner_node: trajectory optimization + FSM -->
+  <node pkg="ego_planner" name="ego_planner_node" type="ego_planner_node" output="screen">
+
+    <!-- topic remaps -->
+    <remap from="/odom_map"        to="$(arg odom_topic)"/>
+    <remap from="/way_point"       to="$(arg goal_topic)"/>
+    <remap from="/grid_map/cloud"  to="/ego_cloud_input"/>
+    <!-- message_filters::Subscriber 不支援 remap，改用 param 傳 topic 名 -->
+    <param name="grid_map/depth_topic" value="$(arg depth_topic)"/>
+    <param name="grid_map/odom_topic"  value="$(arg odom_topic)"/>
+    <!-- 靜態地圖暫停，ego_cloud_input = 純相機點（async_cloud_merger 只做 arm filter）-->
+
+    <!-- FSM -->
+    <param name="fsm/flight_type"          value="1"   type="int"/>   <!-- 1=manual goal -->
+    <param name="fsm/thresh_replan"        value="1.5" type="double"/>
+    <param name="fsm/thresh_no_replan"     value="2.0" type="double"/>
+    <param name="fsm/planning_horizon"     value="2.8" type="double"/>
+    <param name="fsm/planning_horizen_time" value="3"  type="double"/>
+    <param name="fsm/emergency_time_"      value="1.0" type="double"/>
+    <param name="fsm/w_adjust_"            value="1.5" type="double"/>
+    <param name="fsm/waypoint_num"         value="1"   type="int"/>
+    <param name="fsm/waypoint0_x"          value="0.0" type="double"/>
+    <param name="fsm/waypoint0_y"          value="0.0" type="double"/>
+    <param name="fsm/waypoint0_z"          value="0.0" type="double"/>
+
+    <!-- grid map -->
+    <param name="grid_map/resolution"               value="0.1"/>
+    <param name="grid_map/map_size_x"               value="$(arg map_size_x)"/>
+    <param name="grid_map/map_size_y"               value="$(arg map_size_y)"/>
+    <param name="grid_map/map_size_z"               value="$(arg map_size_z)"/>
+    <param name="grid_map/local_update_range_x"     value="5.0"/>
+    <param name="grid_map/local_update_range_y"     value="5.0"/>
+    <param name="grid_map/local_update_range_z"     value="1.5"/>
+    <param name="grid_map/obstacles_inflation"       value="0.40"/>
+    <param name="grid_map/local_map_margin"          value="2"/>
+    <!-- depth range to match Orbbec Astra S sim (0.5~8m) -->
+    <param name="grid_map/min_ray_length"            value="0.5"/>
+    <param name="grid_map/max_ray_length"            value="5.0"/>
+    <!-- ground filter: ignore points below z=0.05m (floor) -->
+    <param name="grid_map/ground_height"             value="0.05"/>
+    <param name="grid_map/virtual_ceil_height"       value="2.0"/>
+    <param name="grid_map/visualization_truncate_height" value="1.8"/>
+    <!-- depth scaling: 32FC1 (metres) × 1000 = uint16 millimetres -->
+    <param name="grid_map/k_depth_scaling_factor"    value="1000.0"/>
+    <param name="grid_map/use_depth_filter"          value="true"/>
+    <param name="grid_map/depth_filter_tolerance"    value="0.15"/>
+    <param name="grid_map/depth_filter_maxdist"      value="5.0"/>
+    <param name="grid_map/depth_filter_mindist"      value="0.5"/>
+    <param name="grid_map/depth_filter_margin"       value="1"/>
+    <param name="grid_map/skip_pixel"                value="2"/>
+    <param name="grid_map/show_occ_time"             value="false"/>
+    <!-- pose_type=2 (ODOMETRY), map_type=1 (PLANNING = depth image + raycasting) -->
+    <!-- cloud topic also active in map_type=1, used for static map walls -->
+    <param name="grid_map/pose_type"                 value="2"/>
+    <param name="grid_map/map_type"                  value="1"/>
+    <param name="grid_map/frame_id"                  value="map"/>
+    <!-- Orbbec Astra S intrinsics -->
+    <param name="grid_map/cx" value="$(arg cx)"/>
+    <param name="grid_map/cy" value="$(arg cy)"/>
+    <param name="grid_map/fx" value="$(arg fx)"/>
+    <param name="grid_map/fy" value="$(arg fy)"/>
+    <!-- probabilistic occupancy -->
+    <param name="grid_map/p_hit"  value="0.85"/>  <!-- 提高：靜態牆點更難被相機 miss ray 侵蝕 -->
+    <param name="grid_map/p_miss" value="0.35"/>
+    <param name="grid_map/p_min"  value="0.12"/>
+    <param name="grid_map/p_max"  value="0.90"/>
+    <param name="grid_map/p_occ"  value="0.70"/>
+
+    <!-- planner -->
+    <param name="manager/max_vel"                  value="0.7"  type="double"/>
+    <param name="manager/max_acc"                  value="1.5"  type="double"/>
+    <param name="manager/max_jerk"                 value="4.0"  type="double"/>
+    <param name="manager/control_points_distance"  value="0.4"  type="double"/>
+    <param name="manager/feasibility_tolerance"    value="0.05" type="double"/>
+    <param name="manager/planning_horizon"         value="2.8"  type="double"/>
+
+    <!-- optimization weights -->
+    <param name="optimization/lambda_smooth"      value="1.0"  type="double"/>
+    <param name="optimization/lambda_collision"   value="0.4"  type="double"/>
+    <param name="optimization/lambda_feasibility" value="0.1"  type="double"/>
+    <param name="optimization/lambda_fitness"     value="2.0"  type="double"/>
+    <param name="optimization/dist0"              value="0.3"  type="double"/>
+    <param name="optimization/max_vel"            value="0.7"  type="double"/>
+    <param name="optimization/max_acc"            value="1.5"  type="double"/>
+
+    <param name="bspline/limit_vel"   value="0.7"  type="double"/>
+    <param name="bspline/limit_acc"   value="1.5"  type="double"/>
+    <param name="bspline/limit_ratio" value="1.1"  type="double"/>
+
+    <!-- MPC controller (w_max limits rotation speed) -->
+    <param name="MPC/v_max"   value="0.7"  type="double"/>
+    <param name="MPC/w_max"   value="1.8"  type="double"/>
+    <param name="MPC/omega0"  value="1.0"  type="double"/>
+    <param name="MPC/omega1"  value="0.1"  type="double"/>
+
+  </node>
+
+  <!-- traj_server: MPC trajectory follower → publishes /cmd_vel -->
+  <node pkg="ego_planner" name="traj_server" type="traj_server" output="screen">
+    <param name="odom_topic" value="$(arg odom_topic)"/>
+  </node>
+
+</launch>

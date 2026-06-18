@@ -1,0 +1,49 @@
+# Joint state publisher (required)
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 50
+
+# Arm controller (joint1-5)
+arm_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+    - joint1
+    - joint2
+    - joint3
+    - joint4
+    - joint5
+  gains:
+    joint1: {p: 100.0, d: 1.0, i: 0.01, i_clamp: 1.0}
+    joint2: {p: 100.0, d: 1.0, i: 0.01, i_clamp: 1.0}
+    joint3: {p: 100.0, d: 1.0, i: 0.01, i_clamp: 1.0}
+    joint4: {p: 100.0, d: 1.0, i: 0.01, i_clamp: 1.0}
+    joint5: {p: 100.0, d: 1.0, i: 0.01, i_clamp: 1.0}
+  constraints:
+    goal_time: 2.0
+    stopped_velocity_tolerance: 0.1
+    joint1: {goal: 0.05}
+    joint2: {goal: 0.05}
+    joint3: {goal: 0.05}
+    joint4: {goal: 0.05}
+    joint5: {goal: 0.05}
+
+# 夾爪用 JointTrajectoryController（與手臂相同方式，確保 Gazebo 實際驅動關節）
+hand_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+    - joint6
+    - joint7
+    - joint8
+    - joint9
+    - joint10
+    - joint11
+  gains:
+    joint6:  {p: 100.0, d: 1.0, i: 0.01, i_clamp: 1.0}
+    joint7:  {p: 100.0, d: 1.0, i: 0.01, i_clamp: 1.0}
+    joint8:  {p: 100.0, d: 1.0, i: 0.01, i_clamp: 1.0}
+    joint9:  {p: 100.0, d: 1.0, i: 0.01, i_clamp: 1.0}
+    joint10: {p: 100.0, d: 1.0, i: 0.01, i_clamp: 1.0}
+    joint11: {p: 100.0, d: 1.0, i: 0.01, i_clamp: 1.0}
+  constraints:
+    goal_time: 2.0
+    stopped_velocity_tolerance: 0.1

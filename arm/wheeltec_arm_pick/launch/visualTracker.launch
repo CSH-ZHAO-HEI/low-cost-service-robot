@@ -1,0 +1,39 @@
+<launch>
+  <!--默认启动launch加载车型为mini_mec_four_arm，具体车型可由base_serial.launch传入参数-->
+  <arg name="moveit_num" default="four_arm"/>
+  <node name="$(arg moveit_num)_visual_tracker" pkg="wheeltec_arm_pick" type="$(arg moveit_num)_visualTracker.py" output="screen">
+    <!-- color or the target in HSV color space -->
+    <rosparam if="$(eval moveit_num=='six_arm')" ns='target'>
+      upper : [0, 43, 46]
+      lower : [10, 255, 255]
+      green_upper : [35, 43, 46]
+      green_lower : [77, 255, 255]
+      blue_upper : [0, 60, 40]
+      blue_lower : [30, 255, 255]
+      yellow_upper : [80, 100, 40]
+      yellow_lower : [100, 255, 255]
+    </rosparam>
+    <rosparam if="$(eval moveit_num=='four_arm')" ns='target'>
+      upper : [0, 43, 46]
+      lower : [10, 255, 255]
+      red_upper : [0, 43, 46]
+      red_lower : [10, 255, 255]
+      green_upper : [60, 44, 70]
+      green_lower : [85, 255, 255]
+      blue_upper : [50, 52, 150]
+      blue_lower : [110, 255, 255]
+      yellow_upper : [20, 15, 150]
+      yellow_lower : [34, 255, 255]
+      black_upper : [0, 0, 0]
+      black_lower : [180, 255, 46]
+    </rosparam>
+    <rosparam ns='pictureDimensions'>
+      <!-- Picture dimensions in pixel -->
+      pictureHeight: 480
+      pictureWidth: 640
+      <!-- Viewing angle of the camera in one direction in Radians -->
+      verticalAngle: 0.43196898986859655
+      horizontalAngle: 0.5235987755982988
+    </rosparam>
+  </node>
+</launch>

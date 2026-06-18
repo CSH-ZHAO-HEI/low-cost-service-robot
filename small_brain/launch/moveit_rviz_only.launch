@@ -1,0 +1,24 @@
+<launch>
+
+  <!-- 只啟動 MoveIt move_group + RViz -->
+  <!-- 請先執行 run_gazebo.sh，再執行此 launch -->
+
+  <!-- 載入 SRDF、joint_limits、kinematics（不重新載入 URDF） -->
+  <include file="$(find mini_mec_six_arm_moveit_config)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="false"/>
+  </include>
+
+  <!-- 啟動 move_group -->
+  <include file="$(find mini_mec_six_arm_moveit_config)/launch/move_group.launch">
+    <arg name="allow_trajectory_execution" value="true"/>
+    <arg name="fake_execution"             value="false"/>
+    <arg name="load_robot_description"     value="false"/>
+    <arg name="info"                       value="true"/>
+  </include>
+
+  <!-- 啟動 RViz with MoveIt plugin -->
+  <include file="$(find mini_mec_six_arm_moveit_config)/launch/moveit_rviz.launch">
+    <arg name="rviz_config" value="$(find mini_mec_six_arm_moveit_config)/launch/moveit.rviz"/>
+  </include>
+
+</launch>

@@ -1,0 +1,9 @@
+<launch>
+  <!-- 純 2D 建圖 RViz：顯示 RTAB-Map 地圖 + 機器人位姿，無 MoveIt
+       Run AFTER: ./run_gazebo.sh + roslaunch small_brain_sim 3d_mapping.launch
+  -->
+  <node pkg="rviz" type="rviz" name="map_rviz" output="screen"
+        args="-d $(find small_brain_sim)/launch/map_view.rviz">
+    <env name="LD_LIBRARY_PATH" value="/usr/local/lib/x86_64-linux-gnu:$(env LD_LIBRARY_PATH)"/>
+  </node>
+</launch>

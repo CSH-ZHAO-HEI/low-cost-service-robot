@@ -1,0 +1,11 @@
+<launch>
+  <!-- 开启机器人底层相关节点  -->
+  <include file="$(find wheeltec_arm_pick)/launch/base_serial.launch" >
+    <arg name="if_arm_pick_color" value="false"/>
+    <arg name="moveit_config" value="true"/>
+    <arg name="pub_node" value="false"/>
+    <arg name="use_camera" value="false"/>
+    <arg name="voi_arm_1" value="true"/>
+  </include>
+
+</launch>

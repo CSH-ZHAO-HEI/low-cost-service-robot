@@ -1,0 +1,177 @@
+Panels:
+  - Class: rviz/Displays
+    Name: Displays
+  - Class: rviz/Views
+    Name: Views
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Class: rviz/Grid
+      Name: Grid
+      Enabled: true
+      Cell Size: 1
+      Color: 160; 160; 164
+      Plane: XY
+      Reference Frame: <Fixed Frame>
+    - Class: rviz/RobotModel
+      Name: RobotModel
+      Enabled: true
+    - Class: rviz/TF
+      Name: TF
+      Enabled: false
+      Marker Scale: 0.3
+    - Class: rviz/Map
+      Name: "2D Map (rtabmap)"
+      Enabled: true
+      Topic: /rtabmap/grid_map
+      Alpha: 0.8
+      Color Scheme: map
+      Draw Behind: false
+    - Class: rviz/Odometry
+      Name: "Ground Truth Odom"
+      Enabled: true
+      Topic: /ground_truth/odom
+      Keep: 0
+      Shape:
+        Alpha: 1
+        Axes Length: 0.3
+        Axes Radius: 0.02
+        Color: 0; 255; 0
+        Head Length: 0.1
+        Head Radius: 0.05
+        Shaft Length: 0.3
+        Shaft Radius: 0.02
+        Value: Arrow
+    - Class: rviz/Map
+      Name: "EGO 2D 規劃地圖 (map_2d)"
+      Enabled: false
+      Topic: /map_2d
+      Alpha: 0.7
+      Color Scheme: map
+      Draw Behind: false
+    - Class: rviz/Map
+      Name: "Global Costmap (move_base / TEB)"
+      Enabled: true
+      Topic: /move_base/global_costmap/costmap
+      Alpha: 0.4
+      Color Scheme: costmap
+      Draw Behind: false
+    - Class: rviz/Map
+      Name: "Local Costmap (move_base / TEB)"
+      Enabled: true
+      Topic: /move_base/local_costmap/costmap
+      Alpha: 0.5
+      Color Scheme: costmap
+      Draw Behind: false
+    - Class: rviz/Path
+      Name: "Global Plan (move_base)"
+      Enabled: true
+      Topic: /move_base/GlobalPlanner/plan
+      Color: 0; 255; 0
+      Line Style: Lines
+      Line Width: 0.03
+    - Class: rviz/Path
+      Name: "TEB Global Plan"
+      Enabled: true
+      Topic: /move_base/TebLocalPlannerROS/global_plan
+      Color: 80; 220; 255
+      Line Style: Lines
+      Line Width: 0.03
+    - Class: rviz/Path
+      Name: "TEB Local Plan"
+      Enabled: true
+      Topic: /move_base/TebLocalPlannerROS/local_plan
+      Color: 255; 128; 0
+      Line Style: Lines
+      Line Width: 0.05
+    - Class: rviz/Marker
+      Name: "TEB Markers"
+      Enabled: true
+      Marker Topic: /move_base/TebLocalPlannerROS/teb_markers
+      Queue Size: 100
+    - Class: rviz/Polygon
+      Name: "Local Costmap Footprint"
+      Enabled: true
+      Topic: /move_base/local_costmap/footprint
+      Color: 255; 255; 0
+      Alpha: 1
+    - Class: rviz/LaserScan
+      Name: "Depth LaserScan (/scan)"
+      Enabled: true
+      Topic: /scan
+      Size (m): 0.04
+      Style: Flat Squares
+      Color Transformer: FlatColor
+      Color: 255; 60; 60
+      Alpha: 0.8
+    - Class: rviz/Path
+      Name: "pure_nav Path (old)"
+      Enabled: false
+      Topic: /pure_nav/path
+      Color: 255; 128; 0
+      Line Style: Lines
+      Line Width: 0.03
+    - Class: rviz/PointCloud2
+      Name: "Depth Points"
+      Enabled: false
+      Topic: /camera/depth/points
+      Size (m): 0.02
+      Style: Flat Squares
+      Color Transformer: RGB8
+    - Class: rviz/PointCloud2
+      Name: "3D Map (rtabmap cloud)"
+      Enabled: false
+      Topic: /rtabmap/cloud_map
+      Size (m): 0.03
+      Style: Flat Squares
+      Color Transformer: RGB8
+      Queue Size: 2
+    - Class: rviz/PointCloud2
+      Name: "EGO Inflate Buffer"
+      Enabled: false
+      Topic: /grid_map/occupancy_inflate
+      Size (m): 0.1
+      Style: Flat Squares
+      Color Transformer: FlatColor
+      Color: 255; 120; 0
+      Alpha: 0.6
+      Queue Size: 2
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: map
+    Frame Rate: 30
+  Tools:
+    - Class: rviz/Interact
+    - Class: rviz/MoveCamera
+    - Class: rviz/Select
+    - Class: rviz/FocusCamera
+    - Class: rviz/Measure
+    - Class: rviz/SetGoal
+      Topic: /move_base_simple/goal
+    - Class: rviz/PublishPoint
+      Single click: true
+      Topic: /clicked_point
+  Views:
+    Current:
+      Class: rviz/Orbit
+      Name: "3D Orbit"
+      Distance: 15
+      Focal Point:
+        X: 0
+        Y: 0
+        Z: 0
+      Pitch: 0.8
+      Yaw: 3.14
+      Target Frame: map
+    Saved:
+      - Class: rviz/TopDownOrtho
+        Name: "Top-down 2D"
+        Scale: 50
+        Target Frame: base_link
+        X: 0
+        Y: 0
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 900
+  Width: 1200
